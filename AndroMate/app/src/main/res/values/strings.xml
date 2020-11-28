@@ -1,16 +1,4 @@
 <resources>
     <string name="app_name">AndroMate</string>
-    <string name="changeCity">Change city</string>
     <string name="appId">1f0baa768f962c90a6346c6372678dce</string>
-
-    <string name="sunny">&#xf00d;</string>
-    <string name="clearNight">&#xf02e;</string>
-
-    <string name="foggy">&#xf014;</string>
-    <string name="cloudy">&#xf013;</string>
-    <string name="rainy">&#xf019;</string>
-    <string name="snowy">&#xf01b;</string>
-    <string name="thunder">&#xf01e;</string>
-    <string name="drizzle">&#xf01c;</string>
-    <string name="placeNotFound">No weather data found</string>
 </resources>
