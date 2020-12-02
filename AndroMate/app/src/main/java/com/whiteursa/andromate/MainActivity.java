@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.res.ResourcesCompat;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.Location;
@@ -51,7 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.weather).setOnTouchListener(new OnSwipeTouchListener(findViewById(R.id.weather).getContext()) {
             public void onSwipeLeft() {
-                Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, WhatToWearActivity.class);
+                //intent.putExtra("temperature", Integer.parseInt(currentTemperature.getText().toString()));
+                startActivity(intent);
             }
         });
 
