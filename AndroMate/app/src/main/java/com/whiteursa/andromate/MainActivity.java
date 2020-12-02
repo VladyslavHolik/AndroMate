@@ -15,6 +15,7 @@ import android.text.Html;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -47,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        findViewById(R.id.weather).setOnTouchListener(new OnSwipeTouchListener(findViewById(R.id.weather).getContext()) {
+            public void onSwipeLeft() {
+                Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
@@ -95,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     public String[] getJSONResponse() {
