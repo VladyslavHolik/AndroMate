@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 jsonData[6] = icon;
             }
         } catch (Exception ex) {
-
+              Log.e("Error", "Error with parsing json data");
         }
         return jsonData;
     }
@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
                     myEditor.putString("GENDER", "Female");
                 }
 
-                myEditor.commit();
+                myEditor.apply();
                 popupWindow.dismiss();
             }
         };
