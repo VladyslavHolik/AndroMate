@@ -14,4 +14,5 @@
     <style name="textRegular" parent="@android:style/TextAppearance">
         <item name="android:textStyle">normal</item>
     </style>
+
 </resources>
