@@ -78,6 +78,7 @@
         android:background="@android:color/transparent"
         android:text="@string/vertical_ellipsis"
         android:textColor="#FFFFFF"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:onClick="showSettings"/>
 
 </RelativeLayout>

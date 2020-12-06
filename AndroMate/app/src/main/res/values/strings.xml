@@ -2,4 +2,8 @@
     <string name="app_name">AndroMate</string>
     <string name="appId">1f0baa768f962c90a6346c6372678dce</string>
     <string name="vertical_ellipsis">&#8942;</string>
+    <string name="gender">Your Gender:</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="save">Save</string>
 </resources>

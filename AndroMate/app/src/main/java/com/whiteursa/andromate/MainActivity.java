@@ -2,19 +2,31 @@ package com.whiteursa.andromate;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -206,5 +218,67 @@ public class MainActivity extends AppCompatActivity {
     }
     private void requestPermissions() {
         ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION}, 1);
+    }
+
+    public void showSettings(View view) {
+        // inflate the layout of the popup window
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View popupView = inflater.inflate(R.layout.settings_popup, null);
+
+        // create the popup window
+        int width = LinearLayout.LayoutParams.MATCH_PARENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        Button save = popupView.findViewById(R.id.saveButton);
+
+        View.OnClickListener saveListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                SharedPreferences.Editor myEditor = myPreferences.edit();
+                RadioButton male = popupView.findViewById(R.id.radioMan);
+                RadioButton female = popupView.findViewById(R.id.radioWoman);
+
+                if (male.isChecked()) {
+                    myEditor.putString("GENDER", "Male");
+                } else {
+                    myEditor.putString("GENDER", "Female");
+                }
+
+                myEditor.commit();
+                popupWindow.dismiss();
+            }
+        };
+
+        save.setOnClickListener(saveListener);
+
+        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        String gender = myPreferences.getString("GENDER", "Unknown");
+        if (!gender.equals("Unknown") ) {
+            if (gender.equals("Male") ) {
+                RadioButton male = popupView.findViewById(R.id.radioMan);
+                male.setChecked(true);
+            } else {
+                RadioButton female = popupView.findViewById(R.id.radioWoman);
+                female.setChecked(true);
+            }
+        }
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+        popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+
+        // dismiss the popup window when touched
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+
+
     }
 }
