@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="textBold" parent="@android:style/TextAppearance">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="textRegular" parent="@android:style/TextAppearance">
+        <item name="android:textStyle">normal</item>
+    </style>
 </resources>
