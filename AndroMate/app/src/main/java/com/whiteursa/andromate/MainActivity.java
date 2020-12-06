@@ -65,7 +65,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.weather).setOnTouchListener(new OnSwipeTouchListener(findViewById(R.id.weather).getContext()) {
             public void onSwipeLeft() {
                 Intent intent = new Intent(MainActivity.this, WhatToWearActivity.class);
-                //intent.putExtra("temperature", Integer.parseInt(currentTemperature.getText().toString()));
+                String temperature = currentTemperature.getText().toString();
+                temperature = temperature.substring(0, temperature.length()-1);
+                intent.putExtra("temperature", Integer.parseInt(temperature));
                 startActivity(intent);
             }
         });

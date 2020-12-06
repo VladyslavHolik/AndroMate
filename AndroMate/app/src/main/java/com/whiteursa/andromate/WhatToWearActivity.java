@@ -1,9 +1,11 @@
 package com.whiteursa.andromate;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,10 +43,18 @@ public class WhatToWearActivity extends AppCompatActivity {
     }
 
     void drawClothes() {
-        int temperature = getIntent().getIntExtra("temperature", 0);
+        int temperature = getIntent().getIntExtra("temperature", 25);
 
         ClothesChooser chooser = new ClothesChooser();
-        String[] whatToWear = chooser.getClothes(temperature, false);
+
+        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(WhatToWearActivity.this);
+        String gender = myPreferences.getString("GENDER", "Unknown");
+
+        boolean forMan = false;
+        if (gender.equals("Male")) {
+            forMan = true;
+        }
+        String[] whatToWear = chooser.getClothes(temperature, forMan);
 
         ListView listOfClothes = findViewById(R.id.listOfClothes);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, whatToWear) {
