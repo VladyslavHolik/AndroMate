@@ -21,7 +21,6 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
     TextView city, details, currentTemperature, humidity, pressure, weatherIcon, lastUpdated;
     Typeface weatherFont;
 
