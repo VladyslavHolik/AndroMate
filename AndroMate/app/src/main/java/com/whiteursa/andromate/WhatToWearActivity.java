@@ -18,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.whiteursa.andromate.weather.ClothesChooser;
 
+import java.util.Objects;
+
 public class WhatToWearActivity extends AppCompatActivity {
 
     @Override
@@ -41,7 +43,7 @@ public class WhatToWearActivity extends AppCompatActivity {
         });
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -61,6 +63,7 @@ public class WhatToWearActivity extends AppCompatActivity {
         if (gender.equals("Male")) {
             forMan = true;
         }
+        assert temperature != null;
         String[] whatToWear = chooser.getClothes(Integer.parseInt(temperature), forMan);
 
         ListView listOfClothes = findViewById(R.id.listOfClothes);

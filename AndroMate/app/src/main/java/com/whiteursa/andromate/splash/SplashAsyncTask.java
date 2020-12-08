@@ -3,17 +3,10 @@ package com.whiteursa.andromate.splash;
 import android.content.Intent;
 import android.location.Location;
 import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Handler;
-import android.text.Html;
-import android.text.Spanned;
 import android.util.Log;
 
-import androidx.annotation.RequiresApi;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.whiteursa.andromate.MainActivity;
 import com.whiteursa.andromate.SplashActivity;
@@ -111,7 +104,7 @@ public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
                 String city = jsonWeather.getString("name") + ", " +
                         jsonWeather.getJSONObject("sys").getString("country");
                 String description = details.getString("description").toLowerCase(Locale.US);
-                String temperature = String.format("%.0f", main.getDouble("temp"));
+                String temperature = String.format(Locale.US, "%.0f", main.getDouble("temp"));
                 String humidity = main.getString("humidity") + "%";
                 String pressure = main.getString("pressure") + " hPa";
                 String lastUpdated = df.format(new Date(jsonWeather.getLong("dt")*1000));
@@ -173,8 +166,8 @@ public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.addRequestProperty("x-api-key", OPEN_WEATHER_API);
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            StringBuffer json = new StringBuffer(1024);
-            String tmp = "";
+            StringBuilder json = new StringBuilder(1024);
+            String tmp;
             while ((tmp = reader.readLine()) != null) {
                 json.append(tmp).append("\n");
             }
