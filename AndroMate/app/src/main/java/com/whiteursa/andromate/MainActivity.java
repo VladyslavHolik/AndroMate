@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("lastUpdated", getIntent().getStringExtra("lastUpdated"));
                 intent.putExtra("weatherIcon",getIntent().getStringExtra("weatherIcon"));
                 startActivity(intent);
+                overridePendingTransition(R.anim.rigth_to_center, R.anim.center_to_left);
             }
         });
 

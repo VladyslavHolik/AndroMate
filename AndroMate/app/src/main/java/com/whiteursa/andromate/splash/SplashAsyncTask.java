@@ -9,6 +9,7 @@ import android.util.Log;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.tasks.Task;
 import com.whiteursa.andromate.MainActivity;
+import com.whiteursa.andromate.R;
 import com.whiteursa.andromate.SplashActivity;
 
 import org.json.JSONObject;
@@ -82,6 +83,7 @@ public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
         myIntent.putExtra("weatherIcon", this.weatherIcon);
 
         activity.startActivity(myIntent);
+        activity.overridePendingTransition(R.anim.become_visible, R.anim.become_invisible);
         activity.finish();
 
     }

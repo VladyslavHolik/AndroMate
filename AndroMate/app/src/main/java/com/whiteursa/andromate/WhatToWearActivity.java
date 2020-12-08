@@ -25,7 +25,6 @@ public class WhatToWearActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.what_to_wear);
 
         findViewById(R.id.listOfClothes).setOnTouchListener(new OnSwipeTouchListener(findViewById(R.id.listOfClothes).getContext()) {
@@ -39,6 +38,7 @@ public class WhatToWearActivity extends AppCompatActivity {
                 intent.putExtra("lastUpdated", getIntent().getStringExtra("lastUpdated"));
                 intent.putExtra("weatherIcon",getIntent().getStringExtra("weatherIcon"));
                 startActivity(intent);
+                overridePendingTransition(R.anim.left_to_center, R.anim.center_to_right);
             }
         });
 
