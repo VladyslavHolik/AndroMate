@@ -29,6 +29,13 @@ public class WhatToWearActivity extends AppCompatActivity {
         findViewById(R.id.listOfClothes).setOnTouchListener(new OnSwipeTouchListener(findViewById(R.id.listOfClothes).getContext()) {
             public void onSwipeRight() {
                 Intent intent = new Intent(WhatToWearActivity.this, MainActivity.class);
+                intent.putExtra("city", getIntent().getStringExtra("city"));
+                intent.putExtra("details", getIntent().getStringExtra("details"));
+                intent.putExtra("currentTemperature", getIntent().getStringExtra("currentTemperature"));
+                intent.putExtra("humidity", getIntent().getStringExtra("humidity"));
+                intent.putExtra("pressure", getIntent().getStringExtra("pressure"));
+                intent.putExtra("lastUpdated", getIntent().getStringExtra("lastUpdated"));
+                intent.putExtra("weatherIcon",getIntent().getStringExtra("weatherIcon"));
                 startActivity(intent);
             }
         });
@@ -43,7 +50,7 @@ public class WhatToWearActivity extends AppCompatActivity {
     }
 
     void drawClothes() {
-        int temperature = getIntent().getIntExtra("temperature", 25);
+        String temperature = getIntent().getStringExtra("currentTemperature");
 
         ClothesChooser chooser = new ClothesChooser();
 
@@ -54,7 +61,7 @@ public class WhatToWearActivity extends AppCompatActivity {
         if (gender.equals("Male")) {
             forMan = true;
         }
-        String[] whatToWear = chooser.getClothes(temperature, forMan);
+        String[] whatToWear = chooser.getClothes(Integer.parseInt(temperature), forMan);
 
         ListView listOfClothes = findViewById(R.id.listOfClothes);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, whatToWear) {
