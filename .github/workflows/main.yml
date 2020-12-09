@@ -18,11 +18,8 @@ jobs:
       - name: Setting gradlew properties
         run: chmod +x ./AndroMate/gradlew
         
-      - name: Going to AndroMate root folder
-        run: cd AndroMate
-        
       - name: Run Tests
-        run: ./gradlew test
+        run: cd AndroMate && ./gradlew test
 
       - name: Build Project
-        run: ./gradlew assemble
+        run: cd AndroMate && ./gradlew assemble
