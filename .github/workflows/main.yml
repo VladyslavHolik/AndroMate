@@ -16,7 +16,7 @@ jobs:
           java-version: 1.8
 
       - name: Setting gradlew properties
-        run: chmod +x gradlew
+        run: chmod +x ./AndroMate/gradlew
         
       - name: Run Tests
         run: ./AndroMate/gradlew test
