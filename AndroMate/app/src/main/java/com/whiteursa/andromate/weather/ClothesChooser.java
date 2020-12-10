@@ -31,11 +31,11 @@ public class ClothesChooser {
 
     public String[] getClothes(int temperature, boolean forMan) {
         if (temperature > 24) {
-            return forMan ? manHot : womanHot;
+            return forMan ? manHot.clone() : womanHot.clone();
         } else if (temperature > 10) {
-            return forMan ? manCool : womanCool;
+            return forMan ? manCool.clone() : womanCool.clone();
         } else {
-            return forMan ? manCold : womanCold;
+            return forMan ? manCold.clone() : womanCold.clone();
         }
     }
 }
