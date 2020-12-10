@@ -23,3 +23,14 @@ jobs:
 
       - name: Build Project
         run: cd AndroMate && ./gradlew assemble
+  test:
+    runs-on: macos-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+
+    - name: run tests
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: 29
+        script: chmod +x ./AndroMate/gradlew && cd AndroMate && ./gradlew connectedCheck
