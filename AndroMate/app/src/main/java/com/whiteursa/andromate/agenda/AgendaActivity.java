@@ -13,6 +13,8 @@ import com.whiteursa.andromate.OnSwipeTouchListener;
 import com.whiteursa.andromate.R;
 import com.whiteursa.andromate.agenda.addEvent.AddEventActivity;
 
+import java.util.Objects;
+
 public class AgendaActivity extends AppCompatActivity {
 
     @Override
@@ -21,7 +23,7 @@ public class AgendaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_agenda);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         AsyncTaskForAgenda task = new AsyncTaskForAgenda(this);
         task.execute(0);

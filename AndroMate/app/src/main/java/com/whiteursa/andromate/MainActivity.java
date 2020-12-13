@@ -22,6 +22,8 @@ import android.widget.TextView;
 
 import com.whiteursa.andromate.agenda.AgendaActivity;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
     TextView city, details, currentTemperature, humidity, pressure, weatherIcon, lastUpdated;
     Typeface weatherFont;
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -70,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
         city.setText(getIntent().getStringExtra("city"));
         details.setText(getIntent().getStringExtra("details"));
-        currentTemperature.setText(getIntent().getStringExtra("currentTemperature")+ "°");
+        currentTemperature.setText(String.format("%s°",getIntent().getStringExtra("currentTemperature")));
         humidity.setText(getIntent().getStringExtra("humidity"));
         pressure.setText(getIntent().getStringExtra("pressure"));
         lastUpdated.setText(getIntent().getStringExtra("lastUpdated"));
@@ -96,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                 SharedPreferences.Editor myEditor = myPreferences.edit();
                 RadioButton male = popupView.findViewById(R.id.radioMan);
-                RadioButton female = popupView.findViewById(R.id.radioWoman);
 
                 if (male.isChecked()) {
                     myEditor.putString("GENDER", "Male");

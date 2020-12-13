@@ -19,6 +19,7 @@ import com.whiteursa.andromate.agenda.AgendaActivity;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class AddEventActivity extends AppCompatActivity  {
     private String selectedDate;
@@ -33,14 +34,14 @@ public class AddEventActivity extends AppCompatActivity  {
         selectedDate = formatter.format(dateNow);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         CalendarView calendar = findViewById(R.id.dateInput);
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                String monthString = "";
-                String dayString = "";
+                String monthString;
+                String dayString;
 
                 if (++month < 10) {
                     monthString = "0" + month;
@@ -71,7 +72,6 @@ public class AddEventActivity extends AppCompatActivity  {
             return;
         }
 
-        CalendarView calendar = findViewById(R.id.dateInput);
         SQLiteDatabase AgendaDB = openOrCreateDatabase("AgendaDB.db", Context.MODE_PRIVATE, null);
 
         String time = timeEdit.getText().toString();
