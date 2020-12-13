@@ -42,7 +42,7 @@ class AsyncTaskForAgenda extends AsyncTask<Integer, Void, ArrayList<ArrayList<St
         String nowString = formatter.format(cal.getTime());
 
         Cursor myCursor = AgendaDB.rawQuery(
-                String.format("SELECT * FROM events WHERE datetime BETWEEN DATETIME(%s + ' 00:00:00.000') AND DATETIME(%s + ' 23:59:59.000') ORDER BY DATETIME(datetime);", nowString, nowString),
+                String.format("SELECT * FROM events WHERE datetime BETWEEN DATETIME('%s 00:00:00.000') AND DATETIME('%s 23:59:59.000') ORDER BY DATETIME(datetime);", nowString, nowString),
                null);
 
         ArrayList<ArrayList<String>> arrayOfEventsData = new ArrayList<>();

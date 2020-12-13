@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, WhatToWearActivity.class);
                 setIntentProperties(intent);
                 startActivity(intent);
-                overridePendingTransition(R.anim.rigth_to_center, R.anim.center_to_left);
+                overridePendingTransition(R.anim.right_to_center, R.anim.center_to_left);
             }
 
             public void onSwipeRight() {
