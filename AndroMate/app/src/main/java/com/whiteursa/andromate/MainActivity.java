@@ -20,6 +20,8 @@ import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.whiteursa.andromate.agenda.AgendaActivity;
+
 public class MainActivity extends AppCompatActivity {
     TextView city, details, currentTemperature, humidity, pressure, weatherIcon, lastUpdated;
     Typeface weatherFont;
@@ -34,15 +36,16 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.weather).setOnTouchListener(new OnSwipeTouchListener(findViewById(R.id.weather).getContext()) {
             public void onSwipeLeft() {
                 Intent intent = new Intent(MainActivity.this, WhatToWearActivity.class);
-                intent.putExtra("city", getIntent().getStringExtra("city"));
-                intent.putExtra("details", getIntent().getStringExtra("details"));
-                intent.putExtra("currentTemperature", getIntent().getStringExtra("currentTemperature"));
-                intent.putExtra("humidity", getIntent().getStringExtra("humidity"));
-                intent.putExtra("pressure", getIntent().getStringExtra("pressure"));
-                intent.putExtra("lastUpdated", getIntent().getStringExtra("lastUpdated"));
-                intent.putExtra("weatherIcon",getIntent().getStringExtra("weatherIcon"));
+                setIntentProperties(intent);
                 startActivity(intent);
                 overridePendingTransition(R.anim.rigth_to_center, R.anim.center_to_left);
+            }
+
+            public void onSwipeRight() {
+                Intent intent = new Intent(MainActivity.this, AgendaActivity.class);
+                setIntentProperties(intent);
+                startActivity(intent);
+                overridePendingTransition(R.anim.left_to_center, R.anim.center_to_right);
             }
         });
 
@@ -131,5 +134,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void setIntentProperties(Intent intent) {
+        intent.putExtra("city", getIntent().getStringExtra("city"));
+        intent.putExtra("details", getIntent().getStringExtra("details"));
+        intent.putExtra("currentTemperature", getIntent().getStringExtra("currentTemperature"));
+        intent.putExtra("humidity", getIntent().getStringExtra("humidity"));
+        intent.putExtra("pressure", getIntent().getStringExtra("pressure"));
+        intent.putExtra("lastUpdated", getIntent().getStringExtra("lastUpdated"));
+        intent.putExtra("weatherIcon",getIntent().getStringExtra("weatherIcon"));
     }
 }
