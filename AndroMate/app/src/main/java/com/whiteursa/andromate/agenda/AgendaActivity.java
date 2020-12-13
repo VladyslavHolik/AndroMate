@@ -6,11 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 
 import com.whiteursa.andromate.MainActivity;
 import com.whiteursa.andromate.OnSwipeTouchListener;
 import com.whiteursa.andromate.R;
+import com.whiteursa.andromate.agenda.addEvent.AddEventActivity;
 
 public class AgendaActivity extends AppCompatActivity {
 
@@ -44,5 +46,13 @@ public class AgendaActivity extends AppCompatActivity {
         intent.putExtra("pressure", getIntent().getStringExtra("pressure"));
         intent.putExtra("lastUpdated", getIntent().getStringExtra("lastUpdated"));
         intent.putExtra("weatherIcon",getIntent().getStringExtra("weatherIcon"));
+    }
+
+    public void onNewEventClick(View view) {
+        Intent intent = new Intent(AgendaActivity.this,
+                AddEventActivity.class);
+        setIntentProperties(intent);
+        startActivity(intent);
+        overridePendingTransition(R.anim.left_to_center, R.anim.center_to_right);
     }
 }

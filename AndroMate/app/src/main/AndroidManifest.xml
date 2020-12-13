@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".agenda.AgendaActivity"></activity>
+        <activity android:name=".agenda.addEvent.AddEventActivity"></activity>
+        <activity android:name=".agenda.AgendaActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Theme.AppCompat">
@@ -25,7 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".WhatToWearActivity" />
     </application>
 

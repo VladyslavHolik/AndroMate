@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/gradient"
+    tools:context=".agenda.addEvent.AddEventActivity"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/saveEventButton"
+        android:layout_marginBottom="10dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <CalendarView
+                android:id="@+id/dateInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:dateTextAppearance="@style/CalenderViewDateCustomText"
+                android:ems="10"
+                android:inputType="date"
+                android:theme="@style/CalenderViewCustom"
+                android:weekDayTextAppearance="@style/CalenderViewWeekCustomText" />
+
+            <EditText
+                android:id="@+id/timeInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="@string/timeForEvent"
+                android:inputType="time"
+                android:theme="@style/EditTextTheme" />
+
+            <EditText
+                android:id="@+id/eventTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/eventTitle"
+                android:inputType="textPersonName"
+                android:textColor="#FFFFFF"
+                android:theme="@style/EditTextTheme" />
+
+            <EditText
+                android:id="@+id/eventDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:gravity="top"
+                android:hint="@string/eventDescription"
+                android:inputType="textMultiLine"
+                android:textColor="#FFFFFF"
+                android:theme="@style/EditTextTheme" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+    <Button
+        android:id="@+id/saveEventButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:background="@drawable/rounded_button"
+        android:text="@string/save"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+</RelativeLayout>

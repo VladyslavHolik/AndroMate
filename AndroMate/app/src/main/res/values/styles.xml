@@ -14,5 +14,22 @@
     <style name="textRegular" parent="@android:style/TextAppearance">
         <item name="android:textStyle">normal</item>
     </style>
+    <style name="CalenderViewCustom" parent="Theme.AppCompat">
+        <item name="colorAccent">#D3D3D3</item>
+    </style>
 
+    <style name="CalenderViewDateCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="EditTextTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorAccent">#FFFFFF</item>
+
+        <item name="android:textColorHint">#FFFFFF</item>
+    </style>
 </resources>

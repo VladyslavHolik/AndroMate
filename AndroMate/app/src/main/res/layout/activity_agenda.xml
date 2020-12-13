@@ -44,5 +44,6 @@
         android:layout_height="50dp"
         android:background="@drawable/circle_button"
         android:text="@string/addEventButton"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:onClick="onNewEventClick"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

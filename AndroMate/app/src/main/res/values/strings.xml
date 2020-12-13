@@ -9,4 +9,8 @@
     <string name="noEvents">You don`t have any events for</string>
     <string name="splashString">App that makes your life easier</string>
     <string name="addEventButton">+</string>
+    <string name="dateForEvent">Date</string>
+    <string name="timeForEvent">Time</string>
+    <string name="eventTitle">Title</string>
+    <string name="eventDescription">Description</string>
 </resources>
