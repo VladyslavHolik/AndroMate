@@ -89,7 +89,6 @@ class AsyncTaskForAgenda extends AsyncTask<Integer, Void, ArrayList<ArrayList<St
 
                     TextView textView = view.findViewById(android.R.id.text1);
                     textView.setTextColor(Color.WHITE);
-                    textView.setOnClickListener(activity.myListener);
 
                     return view;
                 }

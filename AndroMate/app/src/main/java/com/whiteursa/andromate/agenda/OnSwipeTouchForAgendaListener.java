@@ -1,4 +1,5 @@
-package com.whiteursa.andromate;
+package com.whiteursa.andromate.agenda;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.GestureDetector;
@@ -7,11 +8,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
-public class OnSwipeTouchListener implements OnTouchListener {
+class OnSwipeTouchForAgendaListener implements OnTouchListener {
 
     private final GestureDetector gestureDetector;
 
-    protected OnSwipeTouchListener(Context ctx){
+    protected OnSwipeTouchForAgendaListener(Context ctx){
         gestureDetector = new GestureDetector(ctx, new GestureListener());
     }
 
@@ -24,11 +25,6 @@ public class OnSwipeTouchListener implements OnTouchListener {
 
         private static final int SWIPE_THRESHOLD = 100;
         private static final int SWIPE_VELOCITY_THRESHOLD = 100;
-
-        @Override
-        public boolean onDown(MotionEvent e) {
-            return true;
-        }
 
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
