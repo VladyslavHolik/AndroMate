@@ -1,5 +1,6 @@
 package com.whiteursa.andromate.splash;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.location.Location;
 import android.os.AsyncTask;
@@ -27,6 +28,7 @@ public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
     private static final String OPEN_WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&units=metric";
     private static final String OPEN_WEATHER_API = "1f0baa768f962c90a6346c6372678dce";
 
+    @SuppressLint("StaticFieldLeak")
     private SplashActivity activity;
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private String city;

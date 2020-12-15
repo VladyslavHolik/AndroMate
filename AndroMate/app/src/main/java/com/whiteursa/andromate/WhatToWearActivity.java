@@ -1,5 +1,6 @@
 package com.whiteursa.andromate;
 
+import androidx.annotation.NonNull;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -69,7 +70,7 @@ public class WhatToWearActivity extends AppCompatActivity {
         ListView listOfClothes = findViewById(R.id.listOfClothes);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, whatToWear) {
             @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
                 View view =super.getView(position, convertView, parent);
 
                 TextView textView= view.findViewById(android.R.id.text1);

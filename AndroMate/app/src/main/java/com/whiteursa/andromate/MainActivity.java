@@ -2,6 +2,7 @@ package com.whiteursa.andromate;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -20,6 +21,10 @@ import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.whiteursa.andromate.agenda.AgendaActivity;
+
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
     TextView city, details, currentTemperature, humidity, pressure, weatherIcon, lastUpdated;
     Typeface weatherFont;
@@ -34,20 +39,21 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.weather).setOnTouchListener(new OnSwipeTouchListener(findViewById(R.id.weather).getContext()) {
             public void onSwipeLeft() {
                 Intent intent = new Intent(MainActivity.this, WhatToWearActivity.class);
-                intent.putExtra("city", getIntent().getStringExtra("city"));
-                intent.putExtra("details", getIntent().getStringExtra("details"));
-                intent.putExtra("currentTemperature", getIntent().getStringExtra("currentTemperature"));
-                intent.putExtra("humidity", getIntent().getStringExtra("humidity"));
-                intent.putExtra("pressure", getIntent().getStringExtra("pressure"));
-                intent.putExtra("lastUpdated", getIntent().getStringExtra("lastUpdated"));
-                intent.putExtra("weatherIcon",getIntent().getStringExtra("weatherIcon"));
+                setIntentProperties(intent);
                 startActivity(intent);
-                overridePendingTransition(R.anim.rigth_to_center, R.anim.center_to_left);
+                overridePendingTransition(R.anim.right_to_center, R.anim.center_to_left);
+            }
+
+            public void onSwipeRight() {
+                Intent intent = new Intent(MainActivity.this, AgendaActivity.class);
+                setIntentProperties(intent);
+                startActivity(intent);
+                overridePendingTransition(R.anim.left_to_center, R.anim.center_to_right);
             }
         });
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -67,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         city.setText(getIntent().getStringExtra("city"));
         details.setText(getIntent().getStringExtra("details"));
-        currentTemperature.setText(getIntent().getStringExtra("currentTemperature")+ "°");
+        currentTemperature.setText(String.format("%s°",getIntent().getStringExtra("currentTemperature")));
         humidity.setText(getIntent().getStringExtra("humidity"));
         pressure.setText(getIntent().getStringExtra("pressure"));
         lastUpdated.setText(getIntent().getStringExtra("lastUpdated"));
@@ -82,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         // create the popup window
         int width = LinearLayout.LayoutParams.MATCH_PARENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = true; // lets taps outside the popup also dismiss it
+        boolean focusable = true;
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
         Button save = popupView.findViewById(R.id.saveButton);
@@ -93,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                 SharedPreferences.Editor myEditor = myPreferences.edit();
                 RadioButton male = popupView.findViewById(R.id.radioMan);
-                RadioButton female = popupView.findViewById(R.id.radioWoman);
 
                 if (male.isChecked()) {
                     myEditor.putString("GENDER", "Male");
@@ -123,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
         popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
 
         popupView.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 popupWindow.dismiss();
@@ -131,5 +137,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void setIntentProperties(Intent intent) {
+        intent.putExtra("city", getIntent().getStringExtra("city"));
+        intent.putExtra("details", getIntent().getStringExtra("details"));
+        intent.putExtra("currentTemperature", getIntent().getStringExtra("currentTemperature"));
+        intent.putExtra("humidity", getIntent().getStringExtra("humidity"));
+        intent.putExtra("pressure", getIntent().getStringExtra("pressure"));
+        intent.putExtra("lastUpdated", getIntent().getStringExtra("lastUpdated"));
+        intent.putExtra("weatherIcon",getIntent().getStringExtra("weatherIcon"));
     }
 }

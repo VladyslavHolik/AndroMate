@@ -15,15 +15,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SplashActivity" android:theme="@style/Theme.AppCompat">
+        <activity android:name=".agenda.watchEvent.WatchEventActivity"></activity>
+        <activity android:name=".agenda.addEvent.AddEventActivity" />
+        <activity android:name=".agenda.AgendaActivity" />
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/Theme.AppCompat">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".WhatToWearActivity" />
     </application>
 
