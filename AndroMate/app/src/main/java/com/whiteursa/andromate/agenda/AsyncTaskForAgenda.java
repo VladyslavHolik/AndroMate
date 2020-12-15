@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 
 import com.whiteursa.andromate.R;
+import com.whiteursa.andromate.agenda.watchEvent.WatchEventActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -65,10 +67,10 @@ class AsyncTaskForAgenda extends AsyncTask<Integer, Void, ArrayList<ArrayList<St
     }
 
     @Override
-    protected void onPostExecute(ArrayList<ArrayList<String>> arrayOfEventsData) {
+    protected void onPostExecute(final ArrayList<ArrayList<String>> arrayOfEventsData) {
         super.onPostExecute(arrayOfEventsData);
 
-        ArrayList<String> events = new ArrayList<>();
+        final ArrayList<String> events = new ArrayList<>();
 
         for (ArrayList<String> eventData : arrayOfEventsData) {
             String event = eventData.get(0).substring(11,16);
@@ -87,6 +89,7 @@ class AsyncTaskForAgenda extends AsyncTask<Integer, Void, ArrayList<ArrayList<St
 
                     TextView textView = view.findViewById(android.R.id.text1);
                     textView.setTextColor(Color.WHITE);
+                    textView.setOnClickListener(activity.myListener);
 
                     return view;
                 }
@@ -94,6 +97,8 @@ class AsyncTaskForAgenda extends AsyncTask<Integer, Void, ArrayList<ArrayList<St
             };
 
             listOfEvents.setAdapter(adapter);
+            activity.setArrayOfEventsData(arrayOfEventsData);
+
         } else {
             TextView text = activity.findViewById(R.id.noEventsText);
 
