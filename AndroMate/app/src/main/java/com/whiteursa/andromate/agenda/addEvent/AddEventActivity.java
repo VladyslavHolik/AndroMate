@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.CalendarView;
 import android.widget.EditText;
 
+import com.whiteursa.andromate.OnSwipeTouchListener;
 import com.whiteursa.andromate.R;
 import com.whiteursa.andromate.agenda.AgendaActivity;
 
@@ -132,5 +133,12 @@ public class AddEventActivity extends AppCompatActivity  {
         intent.putExtra("pressure", getIntent().getStringExtra("pressure"));
         intent.putExtra("lastUpdated", getIntent().getStringExtra("lastUpdated"));
         intent.putExtra("weatherIcon",getIntent().getStringExtra("weatherIcon"));
+    }
+
+    public void onCancelClick(View view) {
+        Intent intent = new Intent(AddEventActivity.this, AgendaActivity.class);
+        setIntentProperties(intent);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_center, R.anim.center_to_left);
     }
 }

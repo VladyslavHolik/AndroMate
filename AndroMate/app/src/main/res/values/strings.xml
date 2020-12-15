@@ -6,6 +6,7 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
     <string name="noEvents">You don`t have any events for</string>
     <string name="splashString">App that makes your life easier</string>
     <string name="addEventButton">+</string>

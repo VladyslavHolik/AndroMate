@@ -46,7 +46,7 @@ public class SplashActivity extends AppCompatActivity {
         task.execute();
     }
     private void requestPermissions() {
-        ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION}, 1);
+        ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION}, REQUEST_PERMISSION);
     }
 
     @Override

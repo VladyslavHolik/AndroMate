@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/gradient"
+    android:id="@+id/addEventLayout"
     tools:context=".agenda.addEvent.AddEventActivity"
     android:padding="10dp"
     android:layout_width="match_parent"
@@ -12,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_above="@+id/saveEventButton"
+        android:layout_above="@+id/buttons"
         android:layout_marginBottom="10dp"
         android:scrollbars="none">
 
@@ -70,10 +71,17 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
     <Button
         android:id="@+id/saveEventButton"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
@@ -82,4 +90,18 @@
         android:text="@string/save"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:onClick="onAddEventClick"/>
+
+        <Button
+            android:layout_marginStart="15dp"
+            android:id="@+id/cancelButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_button"
+            android:text="@string/cancel"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:onClick="onCancelClick"/>
+    </LinearLayout>
+
 </RelativeLayout>
