@@ -3,6 +3,7 @@ package com.whiteursa.andromate;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import androidx.annotation.NonNull;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -50,7 +51,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == REQUEST_PERMISSION) {
             for (int i = 0, len = permissions.length; i < len; i++) {
                 if (grantResults[i] == PackageManager.PERMISSION_DENIED) {

@@ -1,4 +1,5 @@
 package com.whiteursa.andromate;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -14,8 +15,8 @@ public class OnSwipeTouchListener implements OnTouchListener {
         gestureDetector = new GestureDetector(ctx, new GestureListener());
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     public boolean onTouch(View v, MotionEvent event) {
-        //обработка клика
         return gestureDetector.onTouchEvent(event);
     }
 

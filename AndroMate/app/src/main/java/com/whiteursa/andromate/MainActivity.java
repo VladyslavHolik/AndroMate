@@ -2,6 +2,7 @@ package com.whiteursa.andromate;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         // create the popup window
         int width = LinearLayout.LayoutParams.MATCH_PARENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = true; // lets taps outside the popup also dismiss it
+        boolean focusable = true;
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
         Button save = popupView.findViewById(R.id.saveButton);
@@ -127,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
         popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
 
         popupView.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 popupWindow.dismiss();

@@ -13,7 +13,6 @@ import android.view.WindowManager;
 import android.widget.CalendarView;
 import android.widget.EditText;
 
-import com.whiteursa.andromate.OnSwipeTouchListener;
 import com.whiteursa.andromate.R;
 import com.whiteursa.andromate.agenda.AgendaActivity;
 

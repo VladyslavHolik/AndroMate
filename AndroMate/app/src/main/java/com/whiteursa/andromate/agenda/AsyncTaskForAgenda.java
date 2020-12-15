@@ -1,5 +1,8 @@
 package com.whiteursa.andromate.agenda;
 
+import androidx.annotation.NonNull;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,6 +24,7 @@ import java.util.Date;
 import java.util.Locale;
 
 class AsyncTaskForAgenda extends AsyncTask<Integer, Void, ArrayList<ArrayList<String>>> {
+    @SuppressLint("StaticFieldLeak")
     private AgendaActivity activity;
 
     AsyncTaskForAgenda(AgendaActivity activity) {
@@ -78,7 +82,7 @@ class AsyncTaskForAgenda extends AsyncTask<Integer, Void, ArrayList<ArrayList<St
 
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity, android.R.layout.simple_list_item_1, events) {
                 @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
+                public View getView(int position, View convertView, @NonNull ViewGroup parent) {
                     View view = super.getView(position, convertView, parent);
 
                     TextView textView = view.findViewById(android.R.id.text1);
