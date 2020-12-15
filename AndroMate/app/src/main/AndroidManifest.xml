@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".agenda.addEvent.AddEventActivity"></activity>
+        <activity android:name=".agenda.watchEvent.WatchEventActivity"></activity>
+        <activity android:name=".agenda.addEvent.AddEventActivity" />
         <activity android:name=".agenda.AgendaActivity" />
         <activity
             android:name=".SplashActivity"
