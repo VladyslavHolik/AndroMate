@@ -5,10 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.whiteursa.andromate.R;
 import com.whiteursa.andromate.agenda.AgendaActivity;
-import com.whiteursa.andromate.agenda.addEvent.AddEventActivity;
 
 public class WatchEventActivity extends AppCompatActivity {
 
@@ -17,7 +17,13 @@ public class WatchEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watch_event);
 
+        TextView title = findViewById(R.id.watchEventTitle);
+        TextView datetime = findViewById(R.id.watchEventDateTime);
+        TextView description = findViewById(R.id.watchEventDescription);
 
+        title.setText(getIntent().getStringExtra("eventTitle"));
+        datetime.setText(getIntent().getStringExtra("eventDatetime"));
+        description.setText(getIntent().getStringExtra("eventDescription"));
     }
 
     public void onClick(View view) {
