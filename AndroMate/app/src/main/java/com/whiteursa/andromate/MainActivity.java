@@ -83,13 +83,13 @@ public class MainActivity extends AppCompatActivity {
         // inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
+        assert inflater != null;
         final View popupView = inflater.inflate(R.layout.settings_popup, null);
 
         // create the popup window
         int width = LinearLayout.LayoutParams.MATCH_PARENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = true;
-        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
 
         Button save = popupView.findViewById(R.id.saveButton);
 

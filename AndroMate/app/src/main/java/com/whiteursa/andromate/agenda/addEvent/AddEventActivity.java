@@ -6,12 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.whiteursa.andromate.R;
 import com.whiteursa.andromate.agenda.AgendaActivity;
@@ -72,10 +74,16 @@ public class AddEventActivity extends AppCompatActivity  {
             return;
         }
 
-        SQLiteDatabase AgendaDB = openOrCreateDatabase("AgendaDB.db", Context.MODE_PRIVATE, null);
-
         String time = timeEdit.getText().toString();
         String title = titleEdit.getText().toString();
+
+        if (doesEventExist(time, title)) {
+            Toast.makeText(getApplicationContext(),
+                    "Event already exists", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        SQLiteDatabase AgendaDB = openOrCreateDatabase("AgendaDB.db", Context.MODE_PRIVATE, null);
+
         String description = descriptionEdit.getText().toString();
 
         ContentValues data = new ContentValues();
@@ -93,6 +101,19 @@ public class AddEventActivity extends AppCompatActivity  {
         overridePendingTransition(R.anim.right_to_center, R.anim.center_to_left);
     }
 
+    private boolean doesEventExist(String time, String title) {
+        SQLiteDatabase AgendaDB = openOrCreateDatabase("AgendaDB.db", Context.MODE_PRIVATE, null);
+
+        Cursor myCursor = AgendaDB.rawQuery(
+                String.format("SELECT * FROM events WHERE datetime = '%s %s:00.000' AND title = '%s';", selectedDate, time, title),
+                null);
+
+        boolean result = myCursor.moveToNext();
+        myCursor.close();
+        AgendaDB.close();
+
+        return result;
+    }
     private boolean isTimeValid() {
         EditText timeEdit = findViewById(R.id.timeInput);
         String time = timeEdit.getText().toString();
