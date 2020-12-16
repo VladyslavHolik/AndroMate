@@ -58,7 +58,7 @@ class OnSwipeTouchForAgendaListener implements OnTouchListener {
         }
     }
 
-    public void onSwipeRight() {
+    private void onSwipeRight() {
     }
 
     public void onSwipeLeft() {
