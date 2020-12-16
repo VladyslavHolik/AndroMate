@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 
 
 import com.whiteursa.andromate.R;
-import com.whiteursa.andromate.agenda.watchEvent.WatchEventActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
