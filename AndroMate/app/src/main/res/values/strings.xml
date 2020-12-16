@@ -7,7 +7,8 @@
     <string name="female">Female</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
+    <string name="delete">Delete</string>
     <string name="noEvents">You don`t have any events for</string>
     <string name="splashString">App that makes your life easier</string>
     <string name="addEventButton">+</string>

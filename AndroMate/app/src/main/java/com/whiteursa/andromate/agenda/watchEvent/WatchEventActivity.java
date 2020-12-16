@@ -32,12 +32,16 @@ public class WatchEventActivity extends AppCompatActivity {
         description.setText(getIntent().getStringExtra("eventDescription"));
     }
 
-    public void onClick(View view) {
+    public void onOkClick(View view) {
         Intent intent = new Intent(WatchEventActivity.this,
                 AgendaActivity.class);
         setIntentProperties(intent);
         startActivity(intent);
         overridePendingTransition(R.anim.right_to_center, R.anim.center_to_left);
+    }
+
+    public void onDeleteClick(View view) {
+
     }
 
     private void setIntentProperties(Intent intent) {
