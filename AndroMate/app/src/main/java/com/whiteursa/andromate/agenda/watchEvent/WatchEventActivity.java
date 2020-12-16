@@ -2,7 +2,9 @@ package com.whiteursa.andromate.agenda.watchEvent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -33,15 +35,27 @@ public class WatchEventActivity extends AppCompatActivity {
     }
 
     public void onOkClick(View view) {
+        goToAgenda();
+    }
+
+    public void onDeleteClick(View view) {
+        String datetime = getIntent().getStringExtra("eventDatetime");
+        String title = getIntent().getStringExtra("eventTitle");
+
+        SQLiteDatabase AgendaDB = openOrCreateDatabase("AgendaDB.db", Context.MODE_PRIVATE, null);
+
+        AgendaDB.delete("events", "datetime=? and title=?", new String[]{datetime, title});
+        AgendaDB.close();
+
+        goToAgenda();
+    }
+
+    private void goToAgenda() {
         Intent intent = new Intent(WatchEventActivity.this,
                 AgendaActivity.class);
         setIntentProperties(intent);
         startActivity(intent);
         overridePendingTransition(R.anim.right_to_center, R.anim.center_to_left);
-    }
-
-    public void onDeleteClick(View view) {
-
     }
 
     private void setIntentProperties(Intent intent) {

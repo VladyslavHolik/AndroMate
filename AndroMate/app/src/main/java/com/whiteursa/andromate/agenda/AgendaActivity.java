@@ -42,8 +42,8 @@ public class AgendaActivity extends AppCompatActivity {
                             WatchEventActivity.class);
                     setIntentProperties(intent);
 
-                    intent.putExtra("eventTitle", arrayOfEventsData.get(index).get(0));
-                    intent.putExtra("eventDatetime", arrayOfEventsData.get(index).get(1));
+                    intent.putExtra("eventTitle", arrayOfEventsData.get(index).get(1));
+                    intent.putExtra("eventDatetime", arrayOfEventsData.get(index).get(0));
                     intent.putExtra("eventDescription", arrayOfEventsData.get(index).get(2));
 
                     startActivity(intent);
