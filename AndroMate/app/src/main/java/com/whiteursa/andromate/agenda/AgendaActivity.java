@@ -21,6 +21,7 @@ import java.util.Objects;
 
 public class AgendaActivity extends AppCompatActivity {
 
+    Integer now = 0;
     OnSwipeTouchForAgendaListener myListener;
     private ArrayList<ArrayList<String>> arrayOfEventsData;
 
@@ -66,7 +67,7 @@ public class AgendaActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         AsyncTaskForAgenda task = new AsyncTaskForAgenda(this);
-        task.execute(0);
+        task.execute(now);
 
         events.setOnTouchListener(myListener);
     }
@@ -87,6 +88,20 @@ public class AgendaActivity extends AppCompatActivity {
         setIntentProperties(intent);
         startActivity(intent);
         overridePendingTransition(R.anim.left_to_center, R.anim.center_to_right);
+    }
+
+    public void onBackClick(View view) {
+        now--;
+
+        AsyncTaskForAgenda task = new AsyncTaskForAgenda(this);
+        task.execute(now);
+    }
+
+    public void onNextClick(View view) {
+        now++;
+
+        AsyncTaskForAgenda task = new AsyncTaskForAgenda(this);
+        task.execute(now);
     }
 
     public void setArrayOfEventsData(ArrayList<ArrayList<String>> arrayOfEventsData) {

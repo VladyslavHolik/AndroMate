@@ -82,29 +82,30 @@ class AsyncTaskForAgenda extends AsyncTask<Integer, Void, ArrayList<ArrayList<St
             events.add(event);
         }
 
-        if (events.size() != 0) {
-            ListView listOfEvents = activity.findViewById(R.id.events);
+        ListView listOfEvents = activity.findViewById(R.id.events);
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity, android.R.layout.simple_list_item_1, events) {
-                @Override
-                public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-                    View view = super.getView(position, convertView, parent);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity, android.R.layout.simple_list_item_1, events) {
+            @Override
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
 
-                    TextView textView = view.findViewById(android.R.id.text1);
-                    textView.setTextColor(Color.WHITE);
+                TextView textView = view.findViewById(android.R.id.text1);
+                textView.setTextColor(Color.WHITE);
 
-                    return view;
-                }
+                return view;
+            }
 
-            };
+        };
 
-            listOfEvents.setAdapter(adapter);
-            activity.setArrayOfEventsData(arrayOfEventsData);
+        listOfEvents.setAdapter(adapter);
+        activity.setArrayOfEventsData(arrayOfEventsData);
 
-        } else {
-            TextView text = activity.findViewById(R.id.noEventsText);
+        TextView text = activity.findViewById(R.id.noEventsText);
 
+        if (events.size() == 0) {
             text.setText(String.format("%s %s",activity.getString(R.string.noEvents), nowString));
+        } else {
+            text.setText("");
         }
     }
 }
