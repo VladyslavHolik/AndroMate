@@ -16,4 +16,7 @@
     <string name="timeForEvent">Time</string>
     <string name="eventTitle">Title</string>
     <string name="eventDescription">Description</string>
+    <string name="back">&lt;</string>
+    <string name="next">&gt;</string>
+
 </resources>

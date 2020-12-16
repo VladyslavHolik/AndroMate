@@ -26,6 +26,7 @@ import java.util.Locale;
 class AsyncTaskForAgenda extends AsyncTask<Integer, Void, ArrayList<ArrayList<String>>> {
     @SuppressLint("StaticFieldLeak")
     private AgendaActivity activity;
+    private String nowString;
 
     AsyncTaskForAgenda(AgendaActivity activity) {
         this.activity = activity;
@@ -42,7 +43,7 @@ class AsyncTaskForAgenda extends AsyncTask<Integer, Void, ArrayList<ArrayList<St
         Calendar cal = Calendar.getInstance();
         cal.setTime(dateNow);
         cal.add(Calendar.DATE, params[0]);
-        String nowString = formatter.format(cal.getTime());
+        nowString = formatter.format(cal.getTime());
 
         Cursor myCursor = AgendaDB.rawQuery(
                 String.format("SELECT * FROM events WHERE datetime BETWEEN DATETIME('%s 00:00:00.000') AND DATETIME('%s 23:59:59.000') ORDER BY DATETIME(datetime);", nowString, nowString),
@@ -61,12 +62,16 @@ class AsyncTaskForAgenda extends AsyncTask<Integer, Void, ArrayList<ArrayList<St
         }
         myCursor.close();
         AgendaDB.close();
+
         return arrayOfEventsData;
     }
 
     @Override
     protected void onPostExecute(final ArrayList<ArrayList<String>> arrayOfEventsData) {
         super.onPostExecute(arrayOfEventsData);
+
+        TextView date = activity.findViewById(R.id.datetime);
+        date.setText(nowString);
 
         final ArrayList<String> events = new ArrayList<>();
 
@@ -99,9 +104,6 @@ class AsyncTaskForAgenda extends AsyncTask<Integer, Void, ArrayList<ArrayList<St
         } else {
             TextView text = activity.findViewById(R.id.noEventsText);
 
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-            Date dateNow = new Date();
-            String nowString = formatter.format(dateNow);
             text.setText(String.format("%s %s",activity.getString(R.string.noEvents), nowString));
         }
     }

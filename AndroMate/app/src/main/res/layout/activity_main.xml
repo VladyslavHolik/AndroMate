@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:background="@android:color/transparent"
+        android:background="?selectableItemBackgroundBorderless"
         android:text="@string/vertical_ellipsis"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
