@@ -12,7 +12,7 @@ class OnSwipeTouchForAgendaListener implements OnTouchListener {
 
     private final GestureDetector gestureDetector;
 
-    protected OnSwipeTouchForAgendaListener(Context ctx){
+    OnSwipeTouchForAgendaListener(Context ctx){
         gestureDetector = new GestureDetector(ctx, new GestureListener());
     }
 

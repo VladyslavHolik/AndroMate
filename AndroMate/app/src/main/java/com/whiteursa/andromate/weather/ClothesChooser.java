@@ -1,33 +1,33 @@
 package com.whiteursa.andromate.weather;
 
 public class ClothesChooser {
-    private String[] manHot = {"Обычная футболка", "Объемные шорты",
-    "Парка с капюшоном", "Козырек или косынка", "Солнцезащитные очки",
-    "Мягкая обувь на плоской подошве", "Кардиган",  "Рубашка"};
+    private String[] manHot = {"Regular T-shirt", "Bulky shorts",
+            "Parka with a hood", "Visor or kerchief", "Sunglasses",
+            "Soft flat-soled shoes", "Cardigan", "Shirt"};
 
-    private String[] womanHot = {"Обычная футболка" , "Бретонка",
-    "Льняная рубашка", "Маленькое простое платье", "Платья-туники", "Белые джинсы",
-    "Брюки чинос", "Шорты", "Жакет и джинсовая куртка", "Flats",
-    "Сандалии", "Эспадрильи", "Кеды на плоской подошве", "Классические босоножки на каблуке",
-    "Палантины", "Платки", "Банданы", "Кардиган"};
+    private String[] womanHot = {"Regular T-shirt", "Breton",
+            "Linen shirt", "Small simple dress", "Tunic dresses", "White jeans",
+            "Chinos", "Shorts", "Jacket and Denim Jacket", "Flats",
+            "Sandals", "Espadrilles", "Flat Sneakers", "Classic Heeled Sandals",
+            "Stoles", "Shawls", "Bandanas", "Cardigan"};
 
-    private String[] manCool = {"Классическое пальто", "Жакет", "Брюки", "Рубашка",
-    "Объемный свитер", "Лоферы", "Армейские ботинки", "Челси", "Шапка-бини",
-    "Джинсы", "Лонгслив", "Джемпер", "Броки чинос", "Шарф"};
+    private String[] manCool = {"Classic coat", "Jacket", "Pants", "Shirt",
+            "Bulky Sweater", "Loafers", "Army Boots", "Chelsea", "Beanie Hat",
+            "Jeans", "Longsleeve", "Jumper", "Brockie chinos", "Scarf"};
 
-    private String[] womanCool = {"Классическое пальто", "Жакет", "Брюки",
-    "Юбка средней длины", "Платье из плотной ткани", "Рубашка","Шапка-бини", "Джинсы",
-    "Классическая юбка-карандаш с завышенной талией", "Тренч", "Кашемировый свитер",
-    "Платье А-образного силуэта",  "Шарф"};
+    private String[] womanCool = {"Classic coat", "Jacket", "Pants",
+            "Medium length skirt", "Thick fabric dress", "Shirt", "Beanie hat", "Jeans",
+            "Classic high-waisted pencil skirt", "Trench coat", "Cashmere sweater",
+            "Dress of the A-shaped silhouette", "Scarf"};
 
-    private String[] manCold = {"Парка", "Пальто", "Рубашка", "Лонгслив", "Пуловер",
-    "Джинсы", "Классические брюки", "Ботинки", "Зимняя куртка", "Мужская дубленка",
-    "Ботинки-дезерты", "Джемпер с круглым или V-образным вырезом", "Кардиган"};
+    private String[] manCold = {"Parka", "Coat", "Shirt", "Longsleeve", "Pullover",
+            "Jeans", "Classic trousers", "Boots", "Winter jacket", "Men's sheepskin coat",
+            "Desert boots", "Jumper with a round or V-neck", "Cardigan"};
 
-    private String[] womanCold = {"Блузка с длинным рукавом", "Брюки", "Костюмный ансамбль",
-    "Водолазка", "Пальто на подкладке", "Шуба", "Парка", "Пуховик", "Базовое шерстяное платье",
-    "Свитер крупной вязки", "Кожаная юбка миди", "Шерстяные брюки", "Ботинки или сапоги до колена на меху",
-    "Шапка", "Шарф", "Воротник из меха", "Перчатки"};
+    private String[] womanCold = {"Blouse with long sleeves", "Trousers", "Suit ensemble",
+            "Turtleneck", "Lined coat", "Fur coat", "Parka", "Down jacket", "Basic woolen dress",
+            "Chunky knit sweater", "Leather midi skirt", "Woolen trousers", "Boots or knee-high boots with fur",
+            "Hat", "Scarf", "Fur collar", "Gloves"};
 
     public String[] getClothes(int temperature, boolean forMan) {
         if (temperature > 24) {
