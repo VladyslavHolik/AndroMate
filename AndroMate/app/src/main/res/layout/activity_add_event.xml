@@ -52,7 +52,7 @@
                 android:inputType="textPersonName"
                 android:textColor="#FFFFFF"
                 android:theme="@style/EditTextTheme"
-                android:maxLength="30"/>
+                android:maxLength="60"/>
 
             <EditText
                 android:id="@+id/eventDescription"
@@ -65,7 +65,7 @@
                 android:inputType="textMultiLine"
                 android:textColor="#FFFFFF"
                 android:theme="@style/EditTextTheme"
-                android:maxLength="200"/>
+                android:maxLength="1000"/>
 
 
         </LinearLayout>

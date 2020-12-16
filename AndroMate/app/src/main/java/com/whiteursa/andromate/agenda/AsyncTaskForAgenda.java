@@ -36,7 +36,7 @@ class AsyncTaskForAgenda extends AsyncTask<Integer, Void, ArrayList<ArrayList<St
     @Override
     protected ArrayList<ArrayList<String>> doInBackground(Integer... params) {
         SQLiteDatabase AgendaDB = activity.openOrCreateDatabase("AgendaDB.db", Context.MODE_PRIVATE, null);
-        AgendaDB.execSQL("CREATE TABLE IF NOT EXISTS events (datetime text, title VARCHAR(30), description VARCHAR(200))");
+        AgendaDB.execSQL("CREATE TABLE IF NOT EXISTS events (datetime text, title VARCHAR(60), description VARCHAR(1000))");
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 

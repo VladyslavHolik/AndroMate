@@ -29,8 +29,9 @@ public class WatchEventActivity extends AppCompatActivity {
         TextView datetime = findViewById(R.id.watchEventDateTime);
         TextView description = findViewById(R.id.watchEventDescription);
 
-        title.setText(getIntent().getStringExtra("eventTitle"));
-        datetime.setText(getIntent().getStringExtra("eventDatetime"));
+        title.setText(String.format("%s", getIntent().getStringExtra("eventTitle")));
+        datetime.setText(String.format("%s",
+                Objects.requireNonNull(getIntent().getStringExtra("eventDatetime")).substring(0, 16)));
         description.setText(getIntent().getStringExtra("eventDescription"));
     }
 
