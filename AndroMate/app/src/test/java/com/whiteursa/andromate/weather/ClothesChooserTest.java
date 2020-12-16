@@ -7,14 +7,14 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class ClothesChooserTest {
-    ClothesChooser chooser;
+    private ClothesChooser chooser;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         chooser = new ClothesChooser();
     }
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         chooser = null;
     }
 
@@ -23,6 +23,6 @@ public class ClothesChooserTest {
         String[] result = chooser.getClothes(26, true);
 
         assertNotNull(result);
-        assertTrue(result[0].equals("Обычная футболка"));
+        assertEquals("Regular T-shirt", result[0]);
     }
 }
