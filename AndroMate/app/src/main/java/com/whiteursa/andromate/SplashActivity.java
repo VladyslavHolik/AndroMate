@@ -19,6 +19,7 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 public class SplashActivity extends AppCompatActivity {
 
     private static final int REQUEST_PERMISSION = 1;
+    private boolean jobStarted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,10 @@ public class SplashActivity extends AppCompatActivity {
 
         if (ActivityCompat.checkSelfPermission(SplashActivity.this, ACCESS_FINE_LOCATION) ==
                 PackageManager.PERMISSION_GRANTED) {
-            startJob();
+            if (!jobStarted) {
+                startJob();
+                jobStarted = true;
+            }
         }
     }
 
@@ -58,7 +62,10 @@ public class SplashActivity extends AppCompatActivity {
                     this.finishAffinity();
                 }
             }
-            startJob();
+            if (!jobStarted) {
+                startJob();
+                jobStarted = true;
+            }
         }
     }
 }
