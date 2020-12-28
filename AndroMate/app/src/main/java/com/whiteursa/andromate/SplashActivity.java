@@ -68,4 +68,8 @@ public class SplashActivity extends AppCompatActivity {
             }
         }
     }
+
+    public void showNoConnection() {
+
+    }
 }

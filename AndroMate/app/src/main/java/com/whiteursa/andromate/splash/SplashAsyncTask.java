@@ -40,6 +40,7 @@ public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
     private String lastUpdated;
     private String latitude;
     private String longtitude;
+    private boolean noConnection = false;
 
     public SplashAsyncTask(SplashActivity activity, FusedLocationProviderClient mFusedLocationProviderClient) {
         this.activity = activity;
@@ -57,13 +58,17 @@ public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
 
             String[] jsonData = getJSONResponse();
 
-            city = jsonData[0];
-            details = jsonData[1];
-            currentTemperature = jsonData[2];
-            humidity = "Humidity : " + jsonData[3];
-            pressure = "Pressure : " + jsonData[4];
-            lastUpdated = jsonData[5];
-            weatherIcon = jsonData[6];
+            if (jsonData[0] != null) {
+                city = jsonData[0];
+                details = jsonData[1];
+                currentTemperature = jsonData[2];
+                humidity = "Humidity : " + jsonData[3];
+                pressure = "Pressure : " + jsonData[4];
+                lastUpdated = jsonData[5];
+                weatherIcon = jsonData[6];
+            } else {
+                noConnection = true;
+            }
         }
 
         return null;
@@ -72,21 +77,25 @@ public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        Intent myIntent = new Intent(activity, MainActivity.class);
+        if (noConnection) {
+            activity.showNoConnection();
+        } else {
+            Intent myIntent = new Intent(activity, MainActivity.class);
 
-        myIntent.putExtra("latitude", this.latitude);
-        myIntent.putExtra("longtitude", this.longtitude);
-        myIntent.putExtra("city", this.city);
-        myIntent.putExtra("details", this.details);
-        myIntent.putExtra("currentTemperature", this.currentTemperature);
-        myIntent.putExtra("humidity", this.humidity);
-        myIntent.putExtra("pressure", this.pressure);
-        myIntent.putExtra("lastUpdated", this.lastUpdated);
-        myIntent.putExtra("weatherIcon", this.weatherIcon);
+            myIntent.putExtra("latitude", this.latitude);
+            myIntent.putExtra("longtitude", this.longtitude);
+            myIntent.putExtra("city", this.city);
+            myIntent.putExtra("details", this.details);
+            myIntent.putExtra("currentTemperature", this.currentTemperature);
+            myIntent.putExtra("humidity", this.humidity);
+            myIntent.putExtra("pressure", this.pressure);
+            myIntent.putExtra("lastUpdated", this.lastUpdated);
+            myIntent.putExtra("weatherIcon", this.weatherIcon);
 
-        activity.startActivity(myIntent);
-        activity.overridePendingTransition(R.anim.become_visible, R.anim.become_invisible);
-        activity.finish();
+            activity.startActivity(myIntent);
+            activity.overridePendingTransition(R.anim.become_visible, R.anim.become_invisible);
+            activity.finish();
+        }
 
     }
 
