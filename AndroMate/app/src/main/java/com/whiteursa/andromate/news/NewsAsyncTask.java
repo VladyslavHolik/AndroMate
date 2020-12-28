@@ -1,5 +1,6 @@
 package com.whiteursa.andromate.news;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 
 import org.json.JSONArray;
@@ -15,13 +16,20 @@ import okhttp3.Response;
 
 class NewsAsyncTask extends AsyncTask<String, Void, Void> {
     private Response response;
+    private NewsActivity activity;
 
+    NewsAsyncTask(NewsActivity activity) {
+        this.activity = activity;
+    }
     @Override
     protected Void doInBackground(String... strings) {
         OkHttpClient client = new OkHttpClient();
 
+        String language = strings[0];
+        String url = String.format("https://newscatcher.p.rapidapi.com/v1/sources?topic=news&lang=%s",
+                language);
         Request request = new Request.Builder()
-                .url("https://newscatcher.p.rapidapi.com/v1/sources?topic=news&lang=en")
+                .url(url)
                 .get()
                 .addHeader("x-rapidapi-key", "00f2b6820bmsha803b73bca7a5cbp16f38fjsnc2da1e2a5746")
                 .addHeader("x-rapidapi-host", "newscatcher.p.rapidapi.com")
@@ -56,6 +64,9 @@ class NewsAsyncTask extends AsyncTask<String, Void, Void> {
                 e.printStackTrace();
             }
 
+            if (!articleTitles.isEmpty()) {
+
+            }
         }
     }
 }
