@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.whiteursa.andromate.news.NewsActivity;
 import com.whiteursa.andromate.weather.ClothesChooser;
 
 import java.util.Objects;
@@ -40,6 +41,18 @@ public class WhatToWearActivity extends AppCompatActivity {
                 intent.putExtra("weatherIcon",getIntent().getStringExtra("weatherIcon"));
                 startActivity(intent);
                 overridePendingTransition(R.anim.left_to_center, R.anim.center_to_right);
+            }
+            public void onSwipeLeft() {
+                Intent intent = new Intent(WhatToWearActivity.this, NewsActivity.class);
+                intent.putExtra("city", getIntent().getStringExtra("city"));
+                intent.putExtra("details", getIntent().getStringExtra("details"));
+                intent.putExtra("currentTemperature", getIntent().getStringExtra("currentTemperature"));
+                intent.putExtra("humidity", getIntent().getStringExtra("humidity"));
+                intent.putExtra("pressure", getIntent().getStringExtra("pressure"));
+                intent.putExtra("lastUpdated", getIntent().getStringExtra("lastUpdated"));
+                intent.putExtra("weatherIcon",getIntent().getStringExtra("weatherIcon"));
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_to_center, R.anim.center_to_left);
             }
         });
 

@@ -2,6 +2,7 @@ package com.whiteursa.andromate.news;
 
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,7 +27,7 @@ class NewsAsyncTask extends AsyncTask<String, Void, Void> {
         OkHttpClient client = new OkHttpClient();
 
         String language = strings[0];
-        String url = String.format("https://newscatcher.p.rapidapi.com/v1/sources?topic=news&lang=%s",
+        String url = String.format("https://newscatcher.p.rapidapi.com/v1/search_free?q=news&lang=%s&media=False",
                 language);
         Request request = new Request.Builder()
                 .url(url)
@@ -45,19 +46,23 @@ class NewsAsyncTask extends AsyncTask<String, Void, Void> {
 
     @Override
     protected void onPostExecute(Void aVoid) {
-        if (response.body() != null) {
+        if (response.isSuccessful()) {
             ArrayList<String> articleTitles = new ArrayList<>();
             ArrayList<String> articleLinks = new ArrayList<>();
 
             try {
-                JSONObject json = new JSONObject(response.body().string());
-                if (json.getString("status").equals("ok")) {
-                    JSONArray articles = json.getJSONArray("articles");
+                String data = response.body().string();
+                Log.d("Info", data);
+                if (data != null) {
+                    JSONObject json = new JSONObject(data);
+                    if (json.getString("status").equals("ok")) {
+                        JSONArray articles = json.getJSONArray("articles");
 
-                    for (int index = 0; index < articles.length(); index++) {
-                        JSONObject article = articles.getJSONObject(index);
-                        articleTitles.add(article.getString("title"));
-                        articleLinks.add(article.getString("link"));
+                        for (int index = 0; index < articles.length(); index++) {
+                            JSONObject article = articles.getJSONObject(index);
+                            articleTitles.add(article.getString("title"));
+                            articleLinks.add(article.getString("link"));
+                        }
                     }
                 }
             } catch (JSONException | IOException e) {
