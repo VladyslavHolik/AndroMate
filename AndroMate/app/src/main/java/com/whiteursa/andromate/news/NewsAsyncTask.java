@@ -1,5 +1,6 @@
 package com.whiteursa.andromate.news;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -32,6 +33,7 @@ class NewsAsyncTask extends AsyncTask<String, Void, Void> {
     private Response response;
     private ArrayList<String> articleTitles;
     private ArrayList<String> articleLinks;
+    @SuppressLint("StaticFieldLeak")
     private NewsActivity activity;
 
     NewsAsyncTask(NewsActivity activity) {

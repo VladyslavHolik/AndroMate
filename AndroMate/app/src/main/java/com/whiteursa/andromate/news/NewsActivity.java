@@ -43,7 +43,7 @@ public class NewsActivity extends AppCompatActivity {
     }
     private void findNews() {
         NewsAsyncTask task = new NewsAsyncTask(this);
-        task.execute("en");
+        task.execute("ua");
     }
 
     private void setIntentProperties(Intent intent) {

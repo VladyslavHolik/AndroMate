@@ -22,6 +22,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.whiteursa.andromate.agenda.AgendaActivity;
+import com.whiteursa.andromate.news.NewsActivity;
 
 import java.util.Objects;
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.weather).setOnTouchListener(new OnSwipeTouchListener(findViewById(R.id.weather).getContext()) {
             public void onSwipeLeft() {
-                Intent intent = new Intent(MainActivity.this, WhatToWearActivity.class);
+                Intent intent = new Intent(MainActivity.this, NewsActivity.class);
                 setIntentProperties(intent);
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_to_center, R.anim.center_to_left);
