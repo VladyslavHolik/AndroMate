@@ -1,6 +1,5 @@
 package com.whiteursa.andromate.news;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -67,18 +66,17 @@ class NewsAsyncTask extends AsyncTask<String, Void, Void> {
             articleLinks = new ArrayList<>();
 
             try {
+                assert response.body() != null;
                 String data = response.body().string();
                 Log.d("Info", data);
-                if (data != null) {
-                    JSONObject json = new JSONObject(data);
-                    if (json.getString("status").equals("ok")) {
-                        JSONArray articles = json.getJSONArray("articles");
+                JSONObject json = new JSONObject(data);
+                if (json.getString("status").equals("ok")) {
+                    JSONArray articles = json.getJSONArray("articles");
 
-                        for (int index = 0; index < articles.length(); index++) {
-                            JSONObject article = articles.getJSONObject(index);
-                            articleTitles.add(article.getString("title"));
-                            articleLinks.add(article.getString("link"));
-                        }
+                    for (int index = 0; index < articles.length(); index++) {
+                        JSONObject article = articles.getJSONObject(index);
+                        articleTitles.add(article.getString("title"));
+                        articleLinks.add(article.getString("link"));
                     }
                 }
             } catch (JSONException | IOException e) {
