@@ -3,6 +3,7 @@ package com.whiteursa.andromate.news;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -101,6 +102,9 @@ class NewsAsyncTask extends AsyncTask<String, Void, Void> {
 
                 TextView textView = view.findViewById(android.R.id.text1);
                 textView.setTextColor(Color.WHITE);
+
+                final Typeface fontList = Typeface.createFromAsset(activity.getAssets(), "font/OpenSans-Light.ttf");
+                textView.setTypeface(fontList);
 
                 return view;
             }
