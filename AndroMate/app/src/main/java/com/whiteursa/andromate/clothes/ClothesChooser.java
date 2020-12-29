@@ -1,4 +1,4 @@
-package com.whiteursa.andromate.weather;
+package com.whiteursa.andromate.clothes;
 
 public class ClothesChooser {
     private String[] manHot = {"Regular T-shirt", "Bulky shorts",
