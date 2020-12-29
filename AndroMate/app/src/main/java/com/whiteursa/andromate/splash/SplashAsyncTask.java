@@ -1,7 +1,9 @@
 package com.whiteursa.andromate.splash;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -70,6 +72,8 @@ public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
                 noConnection = true;
             }
         }
+        SQLiteDatabase AgendaDB = activity.openOrCreateDatabase("AgendaDB.db", Context.MODE_PRIVATE, null);
+        AgendaDB.close();
 
         return null;
     }
