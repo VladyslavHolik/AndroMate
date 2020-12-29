@@ -1,8 +1,22 @@
 package com.whiteursa.andromate.news;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+
+import com.whiteursa.andromate.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,6 +31,8 @@ import okhttp3.Response;
 
 class NewsAsyncTask extends AsyncTask<String, Void, Void> {
     private Response response;
+    private ArrayList<String> articleTitles;
+    private ArrayList<String> articleLinks;
     private NewsActivity activity;
 
     NewsAsyncTask(NewsActivity activity) {
@@ -47,8 +63,8 @@ class NewsAsyncTask extends AsyncTask<String, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         if (response.isSuccessful()) {
-            ArrayList<String> articleTitles = new ArrayList<>();
-            ArrayList<String> articleLinks = new ArrayList<>();
+            articleTitles = new ArrayList<>();
+            articleLinks = new ArrayList<>();
 
             try {
                 String data = response.body().string();
@@ -70,8 +86,50 @@ class NewsAsyncTask extends AsyncTask<String, Void, Void> {
             }
 
             if (!articleTitles.isEmpty()) {
-
+                setNews();
             }
         }
+    }
+
+    private void setNews() {
+        ListView newsList = activity.findViewById(R.id.newsList);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity, android.R.layout.simple_list_item_1, articleTitles) {
+            @Override
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+
+                TextView textView = view.findViewById(android.R.id.text1);
+                textView.setTextColor(Color.WHITE);
+
+                return view;
+            }
+
+        };
+
+        removeProgressBar();
+        newsList.setAdapter(adapter);
+
+        setListener(newsList);
+    }
+
+    private void removeProgressBar() {
+        ProgressBar bar = activity.findViewById(R.id.progressBar);
+        bar.setVisibility(ProgressBar.INVISIBLE);
+    }
+
+    private void setListener(ListView list) {
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int index = parent.indexOfChild(view);
+                if (index != -1){
+                    String url = articleLinks.get(index);
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    activity.startActivity(intent);
+                }
+            }
+        });
     }
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 
 import com.whiteursa.andromate.R;
 
@@ -20,9 +21,14 @@ public class NewsActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        findNews();
+        setProgressBar();
+       // findNews();
     }
 
+    private void setProgressBar()  {
+        ProgressBar bar = findViewById(R.id.progressBar);
+        bar.setVisibility(ProgressBar.VISIBLE);
+    }
     private void findNews() {
         NewsAsyncTask task = new NewsAsyncTask(this);
         task.execute("en");
