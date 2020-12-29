@@ -22,7 +22,7 @@ public class NewsActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         setProgressBar();
-       // findNews();
+        findNews();
     }
 
     private void setProgressBar()  {
