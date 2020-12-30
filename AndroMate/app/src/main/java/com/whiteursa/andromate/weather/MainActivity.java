@@ -15,16 +15,20 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.whiteursa.andromate.R;
 import com.whiteursa.andromate.agenda.AgendaActivity;
 import com.whiteursa.andromate.news.NewsActivity;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -126,6 +130,16 @@ public class MainActivity extends AppCompatActivity {
                 female.setChecked(true);
             }
         }
+
+        String[] languages = {"af", "ar", "bg", "bn", "ca","cn", "cs","cy", "da", "de", "el", "en",
+                "es", "et", "fa", "fi", "fr", "gu", "he", "hi", "hr", "hu", "id", "it", "ja", "kn",
+                "ko", "lt", "lv", "mk", "ml", "mr", "ne", "nl", "no", "pa", "pl", "pt", "ro", "ru",
+                "sk", "sl", "so", "sq", "sv", "sw", "ta", "te", "th", "tl", "tr","tw", "uk", "ur","vi"};
+
+        Spinner languagesSpinner = popupView.findViewById(R.id.languagesSpinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, languages);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        languagesSpinner.setAdapter(adapter);
 
         popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
 
