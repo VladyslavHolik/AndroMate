@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
@@ -137,8 +140,14 @@ public class MainActivity extends AppCompatActivity {
                 "sk", "sl", "so", "sq", "sv", "sw", "ta", "te", "th", "tl", "tr","tw", "uk", "ur","vi"};
 
         Spinner languagesSpinner = popupView.findViewById(R.id.languagesSpinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, languages);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        Drawable spinnerDrawable = languagesSpinner.getBackground().getConstantState().newDrawable();
+        spinnerDrawable.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+
+        languagesSpinner.setBackground(spinnerDrawable);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, languages);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         languagesSpinner.setAdapter(adapter);
 
         popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
