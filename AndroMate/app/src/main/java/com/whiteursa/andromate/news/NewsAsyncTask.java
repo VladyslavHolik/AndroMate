@@ -1,7 +1,10 @@
 package com.whiteursa.andromate.news;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -88,8 +91,23 @@ class NewsAsyncTask extends AsyncTask<String, Void, Void> {
 
             if (!articleTitles.isEmpty()) {
                 setNews();
+                putDataIntoDB();
             }
         }
+    }
+
+    private void putDataIntoDB() {
+        SQLiteDatabase AgendaDB = activity.openOrCreateDatabase("AgendaDB.db", Context.MODE_PRIVATE, null);
+        AgendaDB.execSQL("CREATE TABLE IF NOT EXISTS articles (title VARCHAR(200), link VARCHAR(200))");
+
+        AgendaDB.delete("articles",  null, null);
+        for (int index = 0; index < articleTitles.size(); index++) {
+            ContentValues data = new ContentValues();
+            data.put("title", articleTitles.get(index));
+            data.put("link", articleLinks.get(index));
+            AgendaDB.insert("articles", null, data);
+        }
+        AgendaDB.close();
     }
 
     private void setNews() {
