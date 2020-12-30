@@ -118,6 +118,9 @@ class NewsAsyncTask extends AsyncTask<String, Void, Void> {
         Cursor myCursor = AgendaDB.rawQuery(
                 "SELECT * FROM articles;", null);
 
+        articleTitles = new ArrayList<>();
+        articleLinks = new ArrayList<>();
+
         while (myCursor.moveToNext()) {
             articleTitles.add(myCursor.getString(0));
             articleLinks.add(myCursor.getString(1));
