@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
-import com.whiteursa.andromate.MainActivity;
+import com.whiteursa.andromate.weather.MainActivity;
 import com.whiteursa.andromate.R;
 
 import java.util.Objects;
@@ -43,7 +43,7 @@ public class NewsActivity extends AppCompatActivity {
     }
     private void findNews() {
         NewsAsyncTask task = new NewsAsyncTask(this);
-        task.execute("ua");
+        task.execute("ru");
     }
 
     private void setIntentProperties(Intent intent) {

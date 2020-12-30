@@ -1,4 +1,4 @@
-package com.whiteursa.andromate;
+package com.whiteursa.andromate.splash;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -20,7 +20,7 @@ import android.widget.PopupWindow;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.whiteursa.andromate.splash.SplashAsyncTask;
+import com.whiteursa.andromate.R;
 
 import java.util.Objects;
 

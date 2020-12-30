@@ -20,7 +20,7 @@
         <activity android:name=".agenda.addEvent.AddEventActivity" />
         <activity android:name=".agenda.AgendaActivity" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".splash.SplashActivity"
             android:theme="@style/Theme.AppCompat">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".weather.MainActivity" />
     </application>
 
 </manifest>

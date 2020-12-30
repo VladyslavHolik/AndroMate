@@ -105,7 +105,7 @@ class NewsAsyncTask extends AsyncTask<String, Void, Void> {
 
                 final Typeface fontList = Typeface.createFromAsset(activity.getAssets(), "font/OpenSans-Light.ttf");
                 textView.setTypeface(fontList);
-
+                textView.setTextSize(15);
                 return view;
             }
 

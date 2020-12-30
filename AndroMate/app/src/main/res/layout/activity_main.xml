@@ -6,7 +6,7 @@
     android:padding="10dp"
     android:background="@drawable/gradient"
     android:id="@+id/weather"
-    tools:context=".MainActivity">
+    tools:context=".weather.MainActivity">
 
     <TextView
         android:id="@+id/city"

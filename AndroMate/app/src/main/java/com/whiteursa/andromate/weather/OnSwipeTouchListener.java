@@ -1,4 +1,4 @@
-package com.whiteursa.andromate;
+package com.whiteursa.andromate.weather;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.GestureDetector;

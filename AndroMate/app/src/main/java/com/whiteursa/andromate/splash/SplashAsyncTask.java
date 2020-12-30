@@ -11,9 +11,8 @@ import android.util.Log;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.tasks.Task;
-import com.whiteursa.andromate.MainActivity;
+import com.whiteursa.andromate.weather.MainActivity;
 import com.whiteursa.andromate.R;
-import com.whiteursa.andromate.SplashActivity;
 
 import org.json.JSONObject;
 
@@ -52,6 +51,7 @@ public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... params) {
         Task<Location> getLocationTask = mFusedLocationProviderClient.getLastLocation();
+
         while (!getLocationTask.isComplete()) {}
         Location location = getLocationTask.getResult();
         if (location != null) {

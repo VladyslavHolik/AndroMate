@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.whiteursa.andromate.MainActivity;
+import com.whiteursa.andromate.weather.MainActivity;
 import com.whiteursa.andromate.R;
 import com.whiteursa.andromate.agenda.addEvent.AddEventActivity;
 import com.whiteursa.andromate.agenda.watchEvent.WatchEventActivity;

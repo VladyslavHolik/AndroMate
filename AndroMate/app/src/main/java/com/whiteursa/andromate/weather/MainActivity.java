@@ -1,4 +1,4 @@
-package com.whiteursa.andromate;
+package com.whiteursa.andromate.weather;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +21,7 @@ import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.whiteursa.andromate.R;
 import com.whiteursa.andromate.agenda.AgendaActivity;
 import com.whiteursa.andromate.news.NewsActivity;
 
