@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -93,6 +94,8 @@ class NewsAsyncTask extends AsyncTask<String, Void, Void> {
                 setNews();
                 putDataIntoDB();
             }
+        } else {
+            getDataFromDB();
         }
     }
 
@@ -110,6 +113,20 @@ class NewsAsyncTask extends AsyncTask<String, Void, Void> {
         AgendaDB.close();
     }
 
+    private void getDataFromDB() {
+        SQLiteDatabase AgendaDB = activity.openOrCreateDatabase("AgendaDB.db", Context.MODE_PRIVATE, null);
+        Cursor myCursor = AgendaDB.rawQuery(
+                "SELECT * FROM articles;", null);
+
+        while (myCursor.moveToNext()) {
+            articleTitles.add(myCursor.getString(0));
+            articleLinks.add(myCursor.getString(1));
+        }
+
+        myCursor.close();
+        setNews();
+    }
+
     private void setNews() {
         ListView newsList = activity.findViewById(R.id.newsList);
 
@@ -123,7 +140,8 @@ class NewsAsyncTask extends AsyncTask<String, Void, Void> {
 
                 final Typeface fontList = Typeface.createFromAsset(activity.getAssets(), "font/OpenSans-Light.ttf");
                 textView.setTypeface(fontList);
-                textView.setTextSize(15);
+                textView.setTextSize(20);
+                textView.setPadding(25, 15,25,15);
                 return view;
             }
 
