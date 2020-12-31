@@ -29,11 +29,18 @@ import com.whiteursa.andromate.R;
 import com.whiteursa.andromate.agenda.AgendaActivity;
 import com.whiteursa.andromate.news.NewsActivity;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     TextView city, details, currentTemperature, humidity, pressure, weatherIcon, lastUpdated;
     Typeface weatherFont;
+    String[] languages = {"af", "ar", "bg", "bn", "ca","cn", "cs","cy", "da", "de", "el", "en",
+            "es", "et", "fa", "fi", "fr", "gu", "he", "hi", "hr", "hu", "id", "it", "ja", "kn",
+            "ko", "lt", "lv", "mk", "ml", "mr", "ne", "nl", "no", "pa", "pl", "pt", "ro", "ru",
+            "sk", "sl", "so", "sq", "sv", "sw", "ta", "te", "th", "tl", "tr","tw", "uk", "ur","vi"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +119,23 @@ public class MainActivity extends AppCompatActivity {
                     myEditor.putString("GENDER", "Female");
                 }
 
+                Spinner spinner = popupView.findViewById(R.id.languagesSpinner);
+                myEditor.putInt("languagePosition", spinner.getSelectedItemPosition());
+                myEditor.putString("language", languages[spinner.getSelectedItemPosition()]);
+
+                TextView textView = popupView.findViewById(R.id.searchText);
+                String textString = textView.getText().toString();
+
+                if (textString != null && !textString.equals("")) {
+                    try {
+                        myEditor.putString("searchText", URLEncoder.encode(textString, StandardCharsets.UTF_8.toString()));
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    textView.setError("Must not be null");
+                    return;
+                }
                 myEditor.apply();
                 popupWindow.dismiss();
             }
@@ -130,11 +154,6 @@ public class MainActivity extends AppCompatActivity {
                 female.setChecked(true);
             }
         }
-
-        String[] languages = {"af", "ar", "bg", "bn", "ca","cn", "cs","cy", "da", "de", "el", "en",
-                "es", "et", "fa", "fi", "fr", "gu", "he", "hi", "hr", "hu", "id", "it", "ja", "kn",
-                "ko", "lt", "lv", "mk", "ml", "mr", "ne", "nl", "no", "pa", "pl", "pt", "ro", "ru",
-                "sk", "sl", "so", "sq", "sv", "sw", "ta", "te", "th", "tl", "tr","tw", "uk", "ur","vi"};
 
         Spinner languagesSpinner = popupView.findViewById(R.id.languagesSpinner);
 
