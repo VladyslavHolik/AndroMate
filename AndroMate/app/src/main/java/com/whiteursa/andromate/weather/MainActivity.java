@@ -30,6 +30,7 @@ import com.whiteursa.andromate.agenda.AgendaActivity;
 import com.whiteursa.andromate.news.NewsActivity;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
@@ -126,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView textView = popupView.findViewById(R.id.searchText);
                 String textString = textView.getText().toString();
 
-                if (textString != null && !textString.equals("")) {
+                if (!textString.equals("")) {
                     try {
                         myEditor.putString("searchText", URLEncoder.encode(textString, StandardCharsets.UTF_8.toString()));
                     } catch (UnsupportedEncodingException e) {
@@ -166,6 +167,20 @@ public class MainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         languagesSpinner.setAdapter(adapter);
 
+        int languagePosition = myPreferences.getInt("languagePosition", -1);
+        if (languagePosition != -1) {
+            languagesSpinner.setSelection(languagePosition);
+        }
+
+        String searchText = myPreferences.getString("searchText", "");
+        if (!searchText.equals("")) {
+            TextView textView = popupView.findViewById(R.id.searchText);
+            try {
+                textView.setText(URLDecoder.decode(searchText, StandardCharsets.UTF_8.toString()));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
         popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
 
         popupView.setOnTouchListener(new View.OnTouchListener() {

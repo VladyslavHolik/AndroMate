@@ -3,7 +3,9 @@ package com.whiteursa.andromate.news;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
@@ -43,7 +45,11 @@ public class NewsActivity extends AppCompatActivity {
     }
     private void findNews() {
         NewsAsyncTask task = new NewsAsyncTask(this);
-        task.execute("ru");
+
+        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(NewsActivity.this);
+        String language = myPreferences.getString("language", "en");
+        String searchText = myPreferences.getString("searchText", "news");
+        task.execute(language, searchText);
     }
 
     private void setIntentProperties(Intent intent) {

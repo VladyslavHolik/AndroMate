@@ -49,8 +49,9 @@ class NewsAsyncTask extends AsyncTask<String, Void, Void> {
         OkHttpClient client = new OkHttpClient();
 
         String language = strings[0];
-        String url = String.format("https://newscatcher.p.rapidapi.com/v1/search_free?q=news&lang=%s&media=False",
-                language);
+        String searchText = strings[1];
+        String url = String.format("https://newscatcher.p.rapidapi.com/v1/search_free?q=%s&lang=%s&media=False",
+                searchText, language);
         Request request = new Request.Builder()
                 .url(url)
                 .get()
