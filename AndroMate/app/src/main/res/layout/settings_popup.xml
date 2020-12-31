@@ -17,6 +17,7 @@
         android:textSize="22sp" />
 
     <RadioGroup
+        android:layout_margin="10dp"
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,6 +43,7 @@
     </RadioGroup>
 
     <LinearLayout
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -50,18 +52,31 @@
             android:id="@+id/language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:textColor="#FFFFFF"
             android:text="@string/languageSpinnerTitle"
             android:textSize="22sp" />
         <Spinner
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
             android:id="@+id/languagesSpinner"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
+    <EditText
+        android:layout_margin="10dp"
+        android:id="@+id/searchText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/searchText"
+        android:inputType="textShortMessage"
+        android:textColor="#FFFFFF"
+        android:theme="@style/EditTextTheme"
+        android:maxLength="60"/>
+
     <Button
         android:id="@+id/saveButton"
         style="@style/Widget.AppCompat.Button.Borderless"

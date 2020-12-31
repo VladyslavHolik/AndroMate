@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
@@ -30,8 +29,6 @@ import com.whiteursa.andromate.R;
 import com.whiteursa.andromate.agenda.AgendaActivity;
 import com.whiteursa.andromate.news.NewsActivity;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -141,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
         Spinner languagesSpinner = popupView.findViewById(R.id.languagesSpinner);
 
-        Drawable spinnerDrawable = languagesSpinner.getBackground().getConstantState().newDrawable();
+        Drawable spinnerDrawable = Objects.requireNonNull(languagesSpinner.getBackground().getConstantState()).newDrawable();
         spinnerDrawable.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
         languagesSpinner.setBackground(spinnerDrawable);

@@ -20,4 +20,5 @@
     <string name="next">&gt;</string>
     <string name="noConnection">No internet connection\n\nPlease turn on the internet and restart the app</string>
     <string name="languageSpinnerTitle">Language:</string>
+    <string name="searchText">Search frase</string>
 </resources>
