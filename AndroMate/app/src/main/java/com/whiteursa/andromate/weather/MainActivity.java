@@ -41,7 +41,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public final class MainActivity extends AppCompatActivity {
     String[] languages = {"af", "ar", "bg", "bn", "ca","cn", "cs","cy", "da", "de", "el", "en",
             "es", "et", "fa", "fi", "fr", "gu", "he", "hi", "hr", "hu", "id", "it", "ja", "kn",
             "ko", "lt", "lv", "mk", "ml", "mr", "ne", "nl", "no", "pa", "pl", "pt", "ro", "ru",
@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
     private void setViews() {
         setFonts();
         setTexts();
+        setIcons();
     }
 
     private void setFonts() {
@@ -94,7 +95,13 @@ public class MainActivity extends AppCompatActivity {
         TextView lastUpdated = findViewById(R.id.lastUpdated);
         TextView humidity = findViewById(R.id.humidity);
         TextView windSpeed = findViewById(R.id.windSpeed);
+
         TextView weatherIcon = findViewById(R.id.weatherIcon);
+        TextView nowIcon = findViewById(R.id.nowIcon);
+        TextView tomorrowIcon = findViewById(R.id.tomorrowIcon);
+        TextView afterTomorrowIcon = findViewById(R.id.afterTomorrowIcon);
+        TextView aaTomorrowIcon = findViewById(R.id.aaTomorrowIcon);
+        TextView aaaTomorrowIcon = findViewById(R.id.aaaTomorrowIcon);
 
         TextView nowWeekday = findViewById(R.id.nowWeekday);
         TextView tomorrowWeekday = findViewById(R.id.tomorrowWeekday);
@@ -127,6 +134,11 @@ public class MainActivity extends AppCompatActivity {
         aaaTomorrowTemperature.setTypeface(weekdaysFont);
 
         weatherIcon.setTypeface(weatherFont);
+        nowIcon.setTypeface(weatherFont);
+        tomorrowIcon.setTypeface(weatherFont);
+        afterTomorrowIcon.setTypeface(weatherFont);
+        aaTomorrowIcon.setTypeface(weatherFont);
+        aaaTomorrowIcon.setTypeface(weatherFont);
     }
 
     private void setTexts() {
@@ -135,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
         TextView lastUpdated = findViewById(R.id.lastUpdated);
         TextView humidity = findViewById(R.id.humidity);
         TextView windSpeed = findViewById(R.id.windSpeed);
-        TextView weatherIcon = findViewById(R.id.weatherIcon);
 
         TextView nowWeekday = findViewById(R.id.nowWeekday);
         TextView tomorrowWeekday = findViewById(R.id.tomorrowWeekday);
@@ -159,7 +170,6 @@ public class MainActivity extends AppCompatActivity {
         lastUpdated.setText(date);
 
         currentTemperature.setText(String.format("%s°", data.get(1).get(0)));
-        weatherIcon.setText(Html.fromHtml(data.get(1).get(3)));
         humidity.setText(String.format("Humidity\n%s%%", data.get(1).get(1)));
         windSpeed.setText(String.format("Wind\n%s m/s", data.get(1).get(2)));
         nowTemperature.setText(String.format("%s°", data.get(1).get(0)));
@@ -186,6 +196,25 @@ public class MainActivity extends AppCompatActivity {
         afterTomorrowWeekday.setText(afterTomorrow);
         aaTomorrowWeekday.setText(aaTomorrow);
         aaaTomorrowWeekday.setText(aaaTomorrow);
+    }
+
+    private void setIcons() {
+        TextView weatherIcon = findViewById(R.id.weatherIcon);
+        TextView nowIcon = findViewById(R.id.nowIcon);
+        TextView tomorrowIcon = findViewById(R.id.tomorrowIcon);
+        TextView afterTomorrowIcon = findViewById(R.id.afterTomorrowIcon);
+        TextView aaTomorrowIcon = findViewById(R.id.aaTomorrowIcon);
+        TextView aaaTomorrowIcon = findViewById(R.id.aaaTomorrowIcon);
+
+        ArrayList<ArrayList<String>> data = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("data");
+        assert data != null;
+
+        weatherIcon.setText(Html.fromHtml(data.get(1).get(3)));
+        nowIcon.setText(Html.fromHtml(data.get(1).get(3)));
+        tomorrowIcon.setText(Html.fromHtml(data.get(2).get(3)));
+        afterTomorrowIcon.setText(Html.fromHtml(data.get(3).get(3)));
+        aaTomorrowIcon.setText(Html.fromHtml(data.get(4).get(3)));
+        aaaTomorrowIcon.setText(Html.fromHtml(data.get(5).get(3)));
     }
 
     public void showSettings(View view) {
@@ -291,12 +320,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setIntentProperties(Intent intent) {
-        intent.putExtra("city", getIntent().getStringExtra("city"));
-        intent.putExtra("details", getIntent().getStringExtra("details"));
-        intent.putExtra("currentTemperature", getIntent().getStringExtra("currentTemperature"));
-        intent.putExtra("humidity", getIntent().getStringExtra("humidity"));
-        intent.putExtra("pressure", getIntent().getStringExtra("pressure"));
-        intent.putExtra("lastUpdated", getIntent().getStringExtra("lastUpdated"));
-        intent.putExtra("weatherIcon",getIntent().getStringExtra("weatherIcon"));
+        intent.putExtra("data", getIntent().getSerializableExtra("data"));
     }
 }

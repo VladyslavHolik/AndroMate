@@ -138,15 +138,15 @@
 
 
         <TextView
-            android:id="@+id/nowTemperature"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:textColor="#000000"
-            android:textSize="15sp"/>
+        android:id="@+id/nowTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="#000000"
+        android:textSize="15sp"/>
 
         <TextView
             android:id="@+id/tomorrowTemperature"
@@ -187,6 +187,57 @@
             android:layout_marginEnd="20dp"
             android:textColor="#909090"
             android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/nowIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="60dp"
+            android:textColor="#000000"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tomorrowIcon"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nowIcon"
+            android:layout_marginEnd="60dp"
+            android:textColor="#909090"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/afterTomorrowIcon"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tomorrowTemperature"
+            android:layout_marginEnd="60dp"
+            android:textColor="#909090"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/aaTomorrowIcon"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/afterTomorrowTemperature"
+            android:layout_marginEnd="60dp"
+            android:textColor="#909090"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/aaaTomorrowIcon"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aaTomorrowTemperature"
+            android:layout_marginEnd="60dp"
+            android:textColor="#909090"
+            android:textSize="14sp"/>
     </RelativeLayout>
 
 </RelativeLayout>

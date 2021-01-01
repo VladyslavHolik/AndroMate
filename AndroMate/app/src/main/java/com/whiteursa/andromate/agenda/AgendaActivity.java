@@ -73,13 +73,7 @@ public class AgendaActivity extends AppCompatActivity {
     }
 
      void setIntentProperties(Intent intent) {
-        intent.putExtra("city", getIntent().getStringExtra("city"));
-        intent.putExtra("details", getIntent().getStringExtra("details"));
-        intent.putExtra("currentTemperature", getIntent().getStringExtra("currentTemperature"));
-        intent.putExtra("humidity", getIntent().getStringExtra("humidity"));
-        intent.putExtra("pressure", getIntent().getStringExtra("pressure"));
-        intent.putExtra("lastUpdated", getIntent().getStringExtra("lastUpdated"));
-        intent.putExtra("weatherIcon",getIntent().getStringExtra("weatherIcon"));
+         intent.putExtra("data", getIntent().getSerializableExtra("data"));
     }
 
     public void onNewEventClick(View view) {
