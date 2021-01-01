@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.tasks.Task;
+import com.whiteursa.andromate.weather.GetWeather;
 import com.whiteursa.andromate.weather.MainActivity;
 import com.whiteursa.andromate.R;
 
@@ -21,24 +22,19 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
 public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
 
-    private static final String OPEN_WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&units=metric";
+    private static final String OPEN_WEATHER_URL = "http://api.openweathermap.org/data/2.5/forecast?lat=%s&lon=%s&units=metric";
     private static final String OPEN_WEATHER_API = "1f0baa768f962c90a6346c6372678dce";
 
     @SuppressLint("StaticFieldLeak")
     private SplashActivity activity;
     private FusedLocationProviderClient mFusedLocationProviderClient;
-    private String city;
-    private String details;
-    private String currentTemperature;
-    private String humidity;
-    private String pressure;
-    private String weatherIcon;
-    private String lastUpdated;
+    private ArrayList<ArrayList<String>> data;
     private String latitude;
     private String longtitude;
     private boolean noConnection = false;
@@ -58,16 +54,10 @@ public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
             latitude = String.valueOf(location.getLatitude());
             longtitude = String.valueOf(location.getLongitude());
 
-            String[] jsonData = getJSONResponse();
+            ArrayList<ArrayList<String>> jsonData = getJSONResponse();
 
-            if (jsonData[0] != null) {
-                city = jsonData[0];
-                details = jsonData[1];
-                currentTemperature = jsonData[2];
-                humidity = "Humidity : " + jsonData[3];
-                pressure = "Pressure : " + jsonData[4];
-                lastUpdated = jsonData[5];
-                weatherIcon = jsonData[6];
+            if (jsonData != null) {
+                data = jsonData;
             } else {
                 noConnection = true;
             }
@@ -86,15 +76,7 @@ public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
         } else {
             Intent myIntent = new Intent(activity, MainActivity.class);
 
-            myIntent.putExtra("latitude", this.latitude);
-            myIntent.putExtra("longtitude", this.longtitude);
-            myIntent.putExtra("city", this.city);
-            myIntent.putExtra("details", this.details);
-            myIntent.putExtra("currentTemperature", this.currentTemperature);
-            myIntent.putExtra("humidity", this.humidity);
-            myIntent.putExtra("pressure", this.pressure);
-            myIntent.putExtra("lastUpdated", this.lastUpdated);
-            myIntent.putExtra("weatherIcon", this.weatherIcon);
+            myIntent.putExtra("data", data);
 
             activity.startActivity(myIntent);
             activity.overridePendingTransition(R.anim.become_visible, R.anim.become_invisible);
@@ -103,8 +85,8 @@ public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
 
     }
 
-    private String[] getJSONResponse() {
-        String[] jsonData = new String[7];
+    private ArrayList<ArrayList<String>> getJSONResponse() {
+        ArrayList<ArrayList<String>> jsonData = null;
         JSONObject jsonWeather = null;
         try {
             jsonWeather = getWeatherJson(latitude, longtitude);
@@ -112,70 +94,15 @@ public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
             Log.d("Error", "Cannot get JSON results", e);
         }
 
-        try {
-            if (jsonWeather != null) {
-                JSONObject details = jsonWeather.getJSONArray("weather").getJSONObject(0);
-                JSONObject main = jsonWeather.getJSONObject("main");
-                DateFormat df = DateFormat.getDateInstance();
-
-                String city = jsonWeather.getString("name") + ", " +
-                        jsonWeather.getJSONObject("sys").getString("country");
-                String description = details.getString("description").toLowerCase(Locale.US);
-                String temperature = String.format(Locale.US, "%.0f", main.getDouble("temp"));
-                String humidity = main.getString("humidity") + "%";
-                String pressure = main.getString("pressure") + " hPa";
-                String lastUpdated = df.format(new Date(jsonWeather.getLong("dt")*1000));
-                String icon = setWeatherIcon(details.getInt("id"), jsonWeather.getJSONObject("sys").getLong("sunrise")*1000,
-                        jsonWeather.getJSONObject("sys").getLong("sunset")*1000);
-
-                jsonData[0] = city;
-                jsonData[1] = description;
-                jsonData[2] = temperature;
-                jsonData[3] = humidity;
-                jsonData[4] = pressure;
-                jsonData[5] = lastUpdated;
-                jsonData[6] = icon;
-            }
-        } catch (Exception ex) {
-            Log.e("Error", "Error with parsing json data");
+        if (jsonWeather != null) {
+            GetWeather weatherGetter = new GetWeather();
+            jsonData = weatherGetter.getDataArray(jsonWeather);
         }
+
         return jsonData;
     }
 
-    private String setWeatherIcon(int actualId, long sunrise, long sunset) {
-        int id = actualId/100;
-        String icon = "";
-        if (actualId == 800) {
-            long currentTime = new Date().getTime();
-            if(currentTime >= sunrise && currentTime < sunset) {
-                icon = "&#xf00d;";
-            } else {
-                icon = "&#xf02e;";
-            }
-        } else {
-            switch (id) {
-                case 2:
-                    icon = "&#xf01e;";
-                    break;
-                case 3:
-                    icon = "&#xf01c;";
-                    break;
-                case 7:
-                    icon = "&#xf014;";
-                    break;
-                case 8:
-                    icon = "&#xf013;";
-                    break;
-                case 6:
-                    icon = "&#xf01b;";
-                    break;
-                case 5:
-                    icon = "&#xf019;";
-                    break;
-            }
-        }
-        return icon;
-    }
+
 
     private JSONObject getWeatherJson(String latitude, String longtitude) {
         try {
