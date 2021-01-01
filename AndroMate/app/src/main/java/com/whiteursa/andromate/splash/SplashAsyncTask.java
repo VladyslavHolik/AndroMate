@@ -21,10 +21,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
 
@@ -39,7 +36,7 @@ public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
     private String longtitude;
     private boolean noConnection = false;
 
-    public SplashAsyncTask(SplashActivity activity, FusedLocationProviderClient mFusedLocationProviderClient) {
+    SplashAsyncTask(SplashActivity activity, FusedLocationProviderClient mFusedLocationProviderClient) {
         this.activity = activity;
         this.mFusedLocationProviderClient = mFusedLocationProviderClient;
     }
