@@ -141,6 +141,7 @@ public final class MainActivity extends AppCompatActivity {
         TextView aaTomorrowTemperature = findViewById(R.id.aaTomorrowTemperature);
         TextView aaaTomorrowTemperature = findViewById(R.id.aaaTomorrowTemperature);
 
+        @SuppressWarnings (value="unchecked")
         ArrayList<ArrayList<String>> data = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("data");
         assert data != null;
         city.setText(String.format("%s, %s", data.get(0).get(0), data.get(0).get(1)));
@@ -187,6 +188,7 @@ public final class MainActivity extends AppCompatActivity {
         TextView aaTomorrowIcon = findViewById(R.id.aaTomorrowIcon);
         TextView aaaTomorrowIcon = findViewById(R.id.aaaTomorrowIcon);
 
+        @SuppressWarnings (value="unchecked")
         ArrayList<ArrayList<String>> data = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("data");
         assert data != null;
 
@@ -211,7 +213,7 @@ public final class MainActivity extends AppCompatActivity {
         fragment.setActivity(this);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
+        fragmentTransaction.setCustomAnimations(R.anim.down_to_center, R.anim.down_to_center);
         fragmentTransaction.add(R.id.fragment_containter, fragment).addToBackStack(null).commit();
         isFragmentDisplayed = true;
     }

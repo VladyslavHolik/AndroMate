@@ -29,7 +29,7 @@ import java.util.Objects;
 public class SettingsFragment extends Fragment {
     private MainActivity activity;
 
-    String[] languages = {"af", "ar", "bg", "bn", "ca","cn", "cs","cy", "da", "de", "el", "en",
+    private String[] languages = {"af", "ar", "bg", "bn", "ca","cn", "cs","cy", "da", "de", "el", "en",
             "es", "et", "fa", "fi", "fr", "gu", "he", "hi", "hr", "hu", "id", "it", "ja", "kn",
             "ko", "lt", "lv", "mk", "ml", "mr", "ne", "nl", "no", "pa", "pl", "pt", "ro", "ru",
             "sk", "sl", "so", "sq", "sv", "sw", "ta", "te", "th", "tl", "tr","tw", "uk", "ur","vi"};
@@ -113,7 +113,7 @@ public class SettingsFragment extends Fragment {
 
         languagesSpinner.setBackground(spinnerDrawable);
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(rootView.getContext(), R.layout.spinner_item, languages);
+        ArrayAdapter adapter = new ArrayAdapter<>(rootView.getContext(), R.layout.spinner_item, languages);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         languagesSpinner.setAdapter(adapter);
 
