@@ -46,7 +46,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"/>
             <TextView
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:id="@+id/currentTemperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -239,5 +239,11 @@
             android:textColor="#909090"
             android:textSize="14sp"/>
     </RelativeLayout>
-
+    <FrameLayout
+        android:id="@+id/fragment_containter"
+        android:name="com.whiteursa.andromate.settingsFragment.SettingsFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        tools:layout="@layout/fragment_settings" />
 </RelativeLayout>
