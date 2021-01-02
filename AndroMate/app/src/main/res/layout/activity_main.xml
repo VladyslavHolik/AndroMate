@@ -26,26 +26,27 @@
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerInParent="true">
             <TextView
+                android:layout_above="@id/lastUpdated"
                 android:id="@+id/city"
+                android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
                 android:textSize="28sp"/>
             <TextView
+                android:layout_above="@id/currentTemperature"
                 android:id="@+id/lastUpdated"
+                android:layout_marginBottom="20dp"
+                android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"/>
             <TextView
+                android:layout_centerInParent="true"
                 android:layout_marginTop="20dp"
                 android:id="@+id/currentTemperature"
                 android:layout_width="wrap_content"
@@ -54,13 +55,14 @@
                 android:textColor="#FFFFFF"
                 android:textSize="70sp" />
             <TextView
+                android:layout_below="@+id/currentTemperature"
+                android:layout_centerHorizontal="true"
                 android:id="@+id/weatherIcon"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
                 android:textSize="100sp" />
-        </LinearLayout>
 
         <TextView
             android:id="@+id/humidity"
