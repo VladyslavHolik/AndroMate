@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context=".SplashActivity"
+    tools:context=".splash.SplashActivity"
+    android:id="@+id/splashActivity"
     android:background="@drawable/gradient">
 
 <TextView

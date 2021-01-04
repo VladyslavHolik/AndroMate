@@ -4,7 +4,7 @@ import android.view.View;
 
 import androidx.test.rule.ActivityTestRule;
 
-import com.whiteursa.andromate.splash.SplashAsyncTask;
+import com.whiteursa.andromate.splash.SplashActivity;
 
 import org.junit.After;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package com.whiteursa.andromate;
+package com.whiteursa.andromate.weather;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.GestureDetector;
@@ -11,7 +11,7 @@ public class OnSwipeTouchListener implements OnTouchListener {
 
     private final GestureDetector gestureDetector;
 
-    protected OnSwipeTouchListener(Context ctx){
+    OnSwipeTouchListener(Context ctx){
         gestureDetector = new GestureDetector(ctx, new GestureListener());
     }
 

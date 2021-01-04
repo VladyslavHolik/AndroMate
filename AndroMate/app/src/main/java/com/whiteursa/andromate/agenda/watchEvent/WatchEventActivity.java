@@ -2,7 +2,9 @@ package com.whiteursa.andromate.agenda.watchEvent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -27,12 +29,29 @@ public class WatchEventActivity extends AppCompatActivity {
         TextView datetime = findViewById(R.id.watchEventDateTime);
         TextView description = findViewById(R.id.watchEventDescription);
 
-        title.setText(getIntent().getStringExtra("eventTitle"));
-        datetime.setText(getIntent().getStringExtra("eventDatetime"));
+        title.setText(String.format("%s", getIntent().getStringExtra("eventTitle")));
+        datetime.setText(String.format("%s",
+                Objects.requireNonNull(getIntent().getStringExtra("eventDatetime")).substring(0, 16)));
         description.setText(getIntent().getStringExtra("eventDescription"));
     }
 
-    public void onClick(View view) {
+    public void onOkClick(View view) {
+        goToAgenda();
+    }
+
+    public void onDeleteClick(View view) {
+        String datetime = getIntent().getStringExtra("eventDatetime");
+        String title = getIntent().getStringExtra("eventTitle");
+
+        SQLiteDatabase AgendaDB = openOrCreateDatabase("AgendaDB.db", Context.MODE_PRIVATE, null);
+
+        AgendaDB.delete("events", "datetime=? and title=?", new String[]{datetime, title});
+        AgendaDB.close();
+
+        goToAgenda();
+    }
+
+    private void goToAgenda() {
         Intent intent = new Intent(WatchEventActivity.this,
                 AgendaActivity.class);
         setIntentProperties(intent);
@@ -41,12 +60,6 @@ public class WatchEventActivity extends AppCompatActivity {
     }
 
     private void setIntentProperties(Intent intent) {
-        intent.putExtra("city", getIntent().getStringExtra("city"));
-        intent.putExtra("details", getIntent().getStringExtra("details"));
-        intent.putExtra("currentTemperature", getIntent().getStringExtra("currentTemperature"));
-        intent.putExtra("humidity", getIntent().getStringExtra("humidity"));
-        intent.putExtra("pressure", getIntent().getStringExtra("pressure"));
-        intent.putExtra("lastUpdated", getIntent().getStringExtra("lastUpdated"));
-        intent.putExtra("weatherIcon",getIntent().getStringExtra("weatherIcon"));
+        intent.putExtra("data", getIntent().getSerializableExtra("data"));
     }
 }

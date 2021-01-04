@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.whiteursa.andromate.MainActivity;
+import com.whiteursa.andromate.weather.MainActivity;
 import com.whiteursa.andromate.R;
 import com.whiteursa.andromate.agenda.addEvent.AddEventActivity;
 import com.whiteursa.andromate.agenda.watchEvent.WatchEventActivity;
@@ -21,6 +21,7 @@ import java.util.Objects;
 
 public class AgendaActivity extends AppCompatActivity {
 
+    Integer now = 0;
     OnSwipeTouchForAgendaListener myListener;
     private ArrayList<ArrayList<String>> arrayOfEventsData;
 
@@ -42,8 +43,8 @@ public class AgendaActivity extends AppCompatActivity {
                             WatchEventActivity.class);
                     setIntentProperties(intent);
 
-                    intent.putExtra("eventTitle", arrayOfEventsData.get(index).get(0));
-                    intent.putExtra("eventDatetime", arrayOfEventsData.get(index).get(1));
+                    intent.putExtra("eventTitle", arrayOfEventsData.get(index).get(1));
+                    intent.putExtra("eventDatetime", arrayOfEventsData.get(index).get(0));
                     intent.putExtra("eventDescription", arrayOfEventsData.get(index).get(2));
 
                     startActivity(intent);
@@ -66,19 +67,13 @@ public class AgendaActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         AsyncTaskForAgenda task = new AsyncTaskForAgenda(this);
-        task.execute(0);
+        task.execute(now);
 
         events.setOnTouchListener(myListener);
     }
 
      void setIntentProperties(Intent intent) {
-        intent.putExtra("city", getIntent().getStringExtra("city"));
-        intent.putExtra("details", getIntent().getStringExtra("details"));
-        intent.putExtra("currentTemperature", getIntent().getStringExtra("currentTemperature"));
-        intent.putExtra("humidity", getIntent().getStringExtra("humidity"));
-        intent.putExtra("pressure", getIntent().getStringExtra("pressure"));
-        intent.putExtra("lastUpdated", getIntent().getStringExtra("lastUpdated"));
-        intent.putExtra("weatherIcon",getIntent().getStringExtra("weatherIcon"));
+         intent.putExtra("data", getIntent().getSerializableExtra("data"));
     }
 
     public void onNewEventClick(View view) {
@@ -87,6 +82,20 @@ public class AgendaActivity extends AppCompatActivity {
         setIntentProperties(intent);
         startActivity(intent);
         overridePendingTransition(R.anim.left_to_center, R.anim.center_to_right);
+    }
+
+    public void onBackClick(View view) {
+        now--;
+
+        AsyncTaskForAgenda task = new AsyncTaskForAgenda(this);
+        task.execute(now);
+    }
+
+    public void onNextClick(View view) {
+        now++;
+
+        AsyncTaskForAgenda task = new AsyncTaskForAgenda(this);
+        task.execute(now);
     }
 
     public void setArrayOfEventsData(ArrayList<ArrayList<String>> arrayOfEventsData) {

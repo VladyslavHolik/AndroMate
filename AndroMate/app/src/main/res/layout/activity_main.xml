@@ -3,71 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
     android:background="@drawable/gradient"
     android:id="@+id/weather"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/city"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:textColor="#FFFFFF"
-        android:textSize="28sp"/>
-
-    <TextView
-        android:id="@+id/weatherIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textColor="#FFFFFF"
-        android:textSize="90sp"
-        android:layout_above="@+id/currentTemperature"/>
-
-    <TextView
-        android:id="@+id/currentTemperature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textColor="#FFFFFF"
-        android:textSize="90sp" />
-
-    <TextView
-        android:id="@+id/humidity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textColor="#FFFFFF"
-        android:layout_below="@+id/currentTemperature"/>
-
-    <TextView
-        android:id="@+id/pressure"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textColor="#FFFFFF"
-        android:layout_below="@+id/humidity"/>
-
-    <TextView
-        android:id="@+id/details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textColor="#FFFFFF"
-        android:layout_below="@+id/pressure"/>
-
-    <TextView
-        android:id="@+id/lastUpdated"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textColor="#FFFFFF"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
-        android:textSize="12sp"/>
+    tools:context=".weather.MainActivity">
 
     <Button
         android:id="@+id/button"
@@ -75,10 +13,238 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:background="@android:color/transparent"
+        android:background="?selectableItemBackgroundBorderless"
         android:text="@string/vertical_ellipsis"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:onClick="showSettings"/>
 
+
+    <RelativeLayout
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/weekdays"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+            <TextView
+                android:layout_above="@id/lastUpdated"
+                android:id="@+id/city"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp"/>
+            <TextView
+                android:layout_above="@id/weatherIcon"
+                android:id="@+id/lastUpdated"
+                android:layout_marginBottom="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"/>
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/weatherIcon"
+                android:id="@+id/currentTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#FFFFFF"
+                android:textSize="70sp" />
+            <TextView
+                android:layout_centerInParent="true"
+                android:id="@+id/weatherIcon"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="100sp" />
+
+        <TextView
+            android:id="@+id/humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textAlignment="center"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"/>
+
+        <TextView
+            android:id="@+id/windSpeed"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="30dp"
+            android:textAlignment="center"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/weekdays"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+        <TextView
+            android:id="@+id/nowWeekday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:textColor="#000000"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/tomorrowWeekday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nowWeekday"
+            android:layout_marginStart="20dp"
+            android:textColor="#909090"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/afterTomorrowWeekday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tomorrowWeekday"
+            android:layout_marginStart="20dp"
+            android:textColor="#909090"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/aaTomorrowWeekday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/afterTomorrowWeekday"
+            android:layout_marginStart="20dp"
+            android:textColor="#909090"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/aaaTomorrowWeekday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aaTomorrowWeekday"
+            android:layout_marginStart="20dp"
+            android:textColor="#909090"
+            android:textSize="15sp"/>
+
+
+        <TextView
+        android:id="@+id/nowTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="#000000"
+        android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/tomorrowTemperature"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nowWeekday"
+            android:layout_marginEnd="20dp"
+            android:textColor="#909090"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/afterTomorrowTemperature"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tomorrowTemperature"
+            android:layout_marginEnd="20dp"
+            android:textColor="#909090"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/aaTomorrowTemperature"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/afterTomorrowTemperature"
+            android:layout_marginEnd="20dp"
+            android:textColor="#909090"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/aaaTomorrowTemperature"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aaTomorrowTemperature"
+            android:layout_marginEnd="20dp"
+            android:textColor="#909090"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/nowIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="60dp"
+            android:textColor="#000000"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tomorrowIcon"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nowIcon"
+            android:layout_marginEnd="60dp"
+            android:textColor="#909090"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/afterTomorrowIcon"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tomorrowTemperature"
+            android:layout_marginEnd="60dp"
+            android:textColor="#909090"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/aaTomorrowIcon"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/afterTomorrowTemperature"
+            android:layout_marginEnd="60dp"
+            android:textColor="#909090"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/aaaTomorrowIcon"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aaTomorrowTemperature"
+            android:layout_marginEnd="60dp"
+            android:textColor="#909090"
+            android:textSize="14sp"/>
+    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/fragment_containter"
+        android:name="com.whiteursa.andromate.settingsFragment.SettingsFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        tools:layout="@layout/fragment_settings" />
 </RelativeLayout>
