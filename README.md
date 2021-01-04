@@ -1,11 +1,7 @@
 # AndroMate
 > [![Codacy Badge](https://api.codacy.com/project/badge/Grade/94932aa5a35d4d3dbf011e6927a38400)](https://app.codacy.com/gh/vladlinu/AndroMate?utm_source=github.com&utm_medium=referral&utm_content=vladlinu/AndroMate&utm_campaign=Badge_Grade)
 > [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
-<p>
-<img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" />
-<img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white" />
-<img src="https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white"/>
-</p>
+
 Useful android app that helps you with managing routine, discovering weather, choosing your clothing and planning agenda. 
 
 <p align="left">
@@ -60,3 +56,4 @@ Repo has these files:
 -   **[MIT license](http://opensource.org/licenses/mit-license.php)**
 -   My telegram @Vladlinu
 -   Copyright 2020 © <a href="https://github.com/vladlinu" target="_blank">Vladlinu</a>.
+
