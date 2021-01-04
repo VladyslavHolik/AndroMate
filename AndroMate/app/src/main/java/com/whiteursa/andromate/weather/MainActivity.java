@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.whiteursa.andromate.R;
 import com.whiteursa.andromate.agenda.AgendaActivity;
 import com.whiteursa.andromate.news.NewsActivity;
-import com.whiteursa.andromate.settingsFragment.SettingsFragment;
+import com.whiteursa.andromate.settings_fragment.SettingsFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
