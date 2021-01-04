@@ -2,7 +2,10 @@
 > [![Codacy Badge](https://api.codacy.com/project/badge/Grade/94932aa5a35d4d3dbf011e6927a38400)](https://app.codacy.com/gh/vladlinu/AndroMate?utm_source=github.com&utm_medium=referral&utm_content=vladlinu/AndroMate&utm_campaign=Badge_Grade)
 > [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
-Useful android app that helps you with managing routine, discovering weather, choosing your clothing and planning agenda.
+Useful android app that helps you with managing routine, discovering weather, choosing your clothing and planning agenda. 
+<p align="left">
+  <img src="https://github.com/vladlinu/AndroMate/blob/experimental/AndroMate/images/AndroMate_logo.png" width="200" title="AndroMate logo">
+</p>
 
 ## Table of Contents
 
@@ -21,6 +24,15 @@ To use AndroMate you should download apk from this link https://drive.google.com
 Next install it on your device. 
 
 To move between different activities of AndroMate use swipes. For example, to go to activity with articles swipe right, to activity with agenda - swipe left. To open settings press settings button in up-right corner of main (weather) activity. To open article in activity with articles do longclick (for 1 second) on article that you want to open in browser. To add new event in Agenda activity press plus button in down-right corner, then enter information about that event and press Save button. Now you can see this event in your Agenda activity. To watch information about event do longclick on it, also you can delete event from agenda.
+
+## Screenshots
+
+<p align="left">
+  <img src="https://github.com/vladlinu/AndroMate/blob/experimental/AndroMate/images/Weather.png" height="330" width="200" title="Weather activity">
+  <img src="https://github.com/vladlinu/AndroMate/blob/experimental/AndroMate/images/News.png" height="330" width="200" title="News activity">
+  <img src="https://github.com/vladlinu/AndroMate/blob/experimental/AndroMate/images/Event.png" height="330" width="200" title="Activity to add event">
+  <img src="https://github.com/vladlinu/AndroMate/blob/experimental/AndroMate/images/Agenda.png" height="330"  width="200" title="Agenda activity">
+</p>
 
 ## Contributing
 
