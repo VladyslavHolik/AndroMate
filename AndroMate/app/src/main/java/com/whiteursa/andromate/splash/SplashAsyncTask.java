@@ -9,7 +9,10 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 
+import androidx.annotation.NonNull;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.whiteursa.andromate.weather.GetWeather;
 import com.whiteursa.andromate.weather.MainActivity;
@@ -45,7 +48,25 @@ public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... params) {
         Task<Location> getLocationTask = mFusedLocationProviderClient.getLastLocation();
 
-        while (!getLocationTask.isComplete()) {}
+        final Object lock = new Object();
+
+        synchronized (lock) {
+            try {
+                getLocationTask.addOnCompleteListener(new OnCompleteListener<Location>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Location> task) {
+                        synchronized (lock) {
+                            lock.notify();
+                        }
+                    }
+                });
+                lock.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+
         Location location = getLocationTask.getResult();
         if (location != null) {
             latitude = String.valueOf(location.getLatitude());

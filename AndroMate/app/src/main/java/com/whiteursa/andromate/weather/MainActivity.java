@@ -222,7 +222,8 @@ public final class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         SettingsFragment fragment = (SettingsFragment) fragmentManager.findFragmentById(R.id.fragment_containter);
         if (fragment != null) {
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
+                    .setReorderingAllowed(true).replace(R.id.fragment_containter, fragment).addToBackStack(null);
             fragmentTransaction.remove(fragment).commit();
         }
         isFragmentDisplayed = false;

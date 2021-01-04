@@ -36,7 +36,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="28sp"/>
             <TextView
-                android:layout_above="@id/currentTemperature"
+                android:layout_above="@id/weatherIcon"
                 android:id="@+id/lastUpdated"
                 android:layout_marginBottom="20dp"
                 android:layout_centerHorizontal="true"
@@ -46,8 +46,8 @@
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"/>
             <TextView
-                android:layout_centerInParent="true"
-                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/weatherIcon"
                 android:id="@+id/currentTemperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,8 +55,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="70sp" />
             <TextView
-                android:layout_below="@+id/currentTemperature"
-                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
                 android:id="@+id/weatherIcon"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
