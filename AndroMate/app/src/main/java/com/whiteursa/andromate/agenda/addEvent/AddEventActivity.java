@@ -105,7 +105,8 @@ public class AddEventActivity extends AppCompatActivity  {
         SQLiteDatabase AgendaDB = openOrCreateDatabase("AgendaDB.db", Context.MODE_PRIVATE, null);
 
         Cursor myCursor = AgendaDB.rawQuery(
-                String.format("SELECT * FROM events WHERE datetime = '%s %s:00.000' AND title = '%s';", selectedDate, time, title),
+                String.format("SELECT * FROM events WHERE datetime = '%s %s:00.000' AND title = '%s'",
+                        selectedDate, time, manageStringForDatabase(title)),
                 null);
 
         boolean result = myCursor.moveToNext();
@@ -114,6 +115,20 @@ public class AddEventActivity extends AppCompatActivity  {
 
         return result;
     }
+
+    private String manageStringForDatabase(String string) {
+        StringBuilder managedString = new StringBuilder();
+        for (char c : string.toCharArray()) {
+            if (c != '\'') {
+                managedString.append(c);
+            } else {
+                managedString.append('\'');
+                managedString.append('\'');
+            }
+        }
+        return managedString.toString();
+    }
+
     private boolean isTimeValid() {
         EditText timeEdit = findViewById(R.id.timeInput);
         String time = timeEdit.getText().toString();
