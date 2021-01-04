@@ -1,5 +1,7 @@
 # AndroMate
 > [![Codacy Badge](https://api.codacy.com/project/badge/Grade/94932aa5a35d4d3dbf011e6927a38400)](https://app.codacy.com/gh/vladlinu/AndroMate?utm_source=github.com&utm_medium=referral&utm_content=vladlinu/AndroMate&utm_campaign=Badge_Grade)
+> [![Android](https://img.shields.io/static/v1?label=OS&message=Android&color=green)
+> [![Language](https://img.shields.io/static/v1?label=Language&message=Java&color=yellowgreen)
 > [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 Useful android app that helps you with managing routine, discovering weather, choosing your clothing and planning agenda. 
