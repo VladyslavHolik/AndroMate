@@ -43,12 +43,10 @@ public class SplashActivity extends AppCompatActivity {
 
         requestPermissions();
 
-        if (ActivityCompat.checkSelfPermission(SplashActivity.this, ACCESS_FINE_LOCATION) ==
-                PackageManager.PERMISSION_GRANTED) {
-            if (!jobStarted) {
+        if ((ActivityCompat.checkSelfPermission(SplashActivity.this, ACCESS_FINE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED) && (!jobStarted)) {
                 startJob();
                 jobStarted = true;
-            }
         }
     }
 
