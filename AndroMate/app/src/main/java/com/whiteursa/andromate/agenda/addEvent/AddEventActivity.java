@@ -121,10 +121,8 @@ public class AddEventActivity extends AppCompatActivity  {
         if (time.length() != 5) return false;
 
         String hours = time.substring(0,2);
-        if (hours.charAt(0) != '0') {
-            if (Integer.parseInt(hours) > 23) {
+        if ((hours.charAt(0) != '0') && (Integer.parseInt(hours) > 23)) {
                 return false;
-            }
         }
 
         String minutes = time.substring(3);

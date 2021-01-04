@@ -21,8 +21,8 @@ import java.util.Objects;
 
 public class AgendaActivity extends AppCompatActivity {
 
-    Integer now = 0;
-    OnSwipeTouchForAgendaListener myListener;
+    private Integer now = 0;
+    private OnSwipeTouchForAgendaListener myListener;
     private ArrayList<ArrayList<String>> arrayOfEventsData;
 
     @SuppressLint("ClickableViewAccessibility")

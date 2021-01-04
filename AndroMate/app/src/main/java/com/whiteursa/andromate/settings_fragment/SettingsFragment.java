@@ -1,4 +1,4 @@
-package com.whiteursa.andromate.settingsFragment;
+package com.whiteursa.andromate.settings_fragment;
 
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
