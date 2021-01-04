@@ -10,6 +10,7 @@ Useful android app that helps you with managing routine, discovering weather, ch
 ## Table of Contents
 
 -   [Description](#description)
+-   [Screenshots](#screenshots)
 -   [Contributing](#contributing)
 -   [Repo_structure](#repo_structure)
 -   [License](#license)
