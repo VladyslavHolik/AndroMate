@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.whiteursa.andromate.R;
 import com.whiteursa.andromate.agenda.AgendaActivity;
 import com.whiteursa.andromate.news.NewsActivity;
+import com.whiteursa.andromate.settings_fragment.EmptyFragmentForSettings;
 import com.whiteursa.andromate.settings_fragment.SettingsFragment;
 
 import java.text.SimpleDateFormat;
@@ -214,18 +215,20 @@ public final class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.down_to_center, R.anim.down_to_center);
-        fragmentTransaction.add(R.id.fragment_containter, fragment).addToBackStack(null).commit();
+        fragmentTransaction.add(R.id.fragment_containter, fragment).commit();
         isFragmentDisplayed = true;
     }
 
      public void closeFragment() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        SettingsFragment fragment = (SettingsFragment) fragmentManager.findFragmentById(R.id.fragment_containter);
-        if (fragment != null) {
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
-                    .setReorderingAllowed(true).replace(R.id.fragment_containter, fragment).addToBackStack(null);
-            fragmentTransaction.remove(fragment).commit();
-        }
+         FragmentManager fragmentManager = getSupportFragmentManager();
+         SettingsFragment fragment = (SettingsFragment) fragmentManager.findFragmentById(R.id.fragment_containter);
+         if (fragment != null) {
+             EmptyFragmentForSettings emptyFragment = EmptyFragmentForSettings.newInstance();
+             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+             fragmentTransaction.setCustomAnimations(R.anim.up_to_center, R.anim.center_to_down);
+             fragmentTransaction.setReorderingAllowed(true).replace(R.id.fragment_containter, emptyFragment, null);
+             fragmentTransaction.commit();
+         }
         isFragmentDisplayed = false;
     }
 
