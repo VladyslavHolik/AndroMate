@@ -12,10 +12,6 @@ import com.whiteursa.andromate.R;
 
 public class EmptyFragmentForSettings extends Fragment {
 
-    public EmptyFragmentForSettings() {
-        // Required empty public constructor
-    }
-
     public static EmptyFragmentForSettings newInstance() {
         return new EmptyFragmentForSettings();
     }
