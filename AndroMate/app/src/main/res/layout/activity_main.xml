@@ -15,7 +15,7 @@
         android:layout_alignParentEnd="true"
         android:background="?selectableItemBackgroundBorderless"
         android:text="@string/vertical_ellipsis"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:onClick="showSettings"/>
 
