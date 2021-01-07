@@ -38,6 +38,7 @@ public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
     private String latitude;
     private String longtitude;
     private boolean noConnection = false;
+    private boolean noLocation = false;
 
     SplashAsyncTask(SplashActivity activity, FusedLocationProviderClient mFusedLocationProviderClient) {
         this.activity = activity;
@@ -79,6 +80,8 @@ public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
             } else {
                 noConnection = true;
             }
+        }  else {
+            noLocation = true;
         }
         SQLiteDatabase AgendaDB = activity.openOrCreateDatabase("AgendaDB.db", Context.MODE_PRIVATE, null);
         AgendaDB.close();
@@ -89,8 +92,11 @@ public class SplashAsyncTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        if (noConnection) {
-            activity.showNoConnection();
+
+        if (noLocation) {
+            activity.showNoData(activity.getString(R.string.noLocation));
+        } else if (noConnection) {
+            activity.showNoData(activity.getString(R.string.noConnection));
         } else {
             Intent myIntent = new Intent(activity, MainActivity.class);
 
