@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -76,12 +77,12 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
-    public void showNoConnection() {
+    public void showNoData(String message) {
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
         assert inflater != null;
         View view = findViewById(R.id.splashActivity);
-        @SuppressLint("InflateParams") final View popupView = inflater.inflate(R.layout.no_connection_popup, null);
+        @SuppressLint("InflateParams") final View popupView = inflater.inflate(R.layout.no_necessary_data_popup, null);
         int width = LinearLayout.LayoutParams.MATCH_PARENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, false);
@@ -97,6 +98,10 @@ public class SplashActivity extends AppCompatActivity {
 
         ok.setOnClickListener(listener);
         popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+
+        TextView messageView = popupView.findViewById(R.id.message);
+        messageView.setText(message);
+
         popupView.setOnTouchListener(new View.OnTouchListener() {
             @SuppressLint("ClickableViewAccessibility")
             @Override
