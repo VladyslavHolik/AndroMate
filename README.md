@@ -24,7 +24,9 @@ AndroMate is an android app, that you can use to discover current weather based 
 
 ### Using AndroMate
 
-Install AndroMate from Amazon https://www.amazon.com/gp/product/B08S1QY3SF. 
+<a href="https://www.amazon.com/gp/product/B08S1QY3SF" >
+<img src="https://github.com/vladlinu/AndroMate/blob/experimental/AndroMate/images/Amazon.png" width="200"/>
+</a>
 
 To move between different activities of AndroMate use swipes. For example, to go to activity with articles swipe right, to activity with agenda - swipe left. To open settings press settings button in up-right corner of main (weather) activity. To open article in activity with articles do longclick (for 1 second) on article that you want to open in browser. To add new event in Agenda activity press plus button in down-right corner, then enter information about that event and press Save button. Now you can see this event in your Agenda activity. To watch information about event do longclick on it, also you can delete event from agenda.
 
