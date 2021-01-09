@@ -193,12 +193,12 @@ public final class MainActivity extends AppCompatActivity {
         ArrayList<ArrayList<String>> data = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("data");
         assert data != null;
 
-        weatherIcon.setText(Html.fromHtml(data.get(1).get(3)));
-        nowIcon.setText(Html.fromHtml(data.get(1).get(3)));
-        tomorrowIcon.setText(Html.fromHtml(data.get(2).get(3)));
-        afterTomorrowIcon.setText(Html.fromHtml(data.get(3).get(3)));
-        aaTomorrowIcon.setText(Html.fromHtml(data.get(4).get(3)));
-        aaaTomorrowIcon.setText(Html.fromHtml(data.get(5).get(3)));
+        weatherIcon.setText(Html.fromHtml(data.get(1).get(3), Html.FROM_HTML_MODE_LEGACY));
+        nowIcon.setText(Html.fromHtml(data.get(1).get(3), Html.FROM_HTML_MODE_LEGACY));
+        tomorrowIcon.setText(Html.fromHtml(data.get(2).get(3), Html.FROM_HTML_MODE_LEGACY));
+        afterTomorrowIcon.setText(Html.fromHtml(data.get(3).get(3), Html.FROM_HTML_MODE_LEGACY));
+        aaTomorrowIcon.setText(Html.fromHtml(data.get(4).get(3), Html.FROM_HTML_MODE_LEGACY));
+        aaaTomorrowIcon.setText(Html.fromHtml(data.get(5).get(3), Html.FROM_HTML_MODE_LEGACY));
     }
 
     public void showSettings(View view) {
