@@ -166,13 +166,11 @@ class NewsAsyncTask extends AsyncTask<String, Void, Void> {
         list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                int index = parent.indexOfChild(view);
-                if (index != -1) {
-                    String url = articleLinks.get(index);
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(url));
-                    activity.startActivity(intent);
-                }
+                String url = articleLinks.get(position);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                activity.startActivity(intent);
+
                 return false;
             }
         });
